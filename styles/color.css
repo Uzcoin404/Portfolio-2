@@ -1,0 +1,41 @@
+/* Main Day mode */
+main.day .container_glass, main.day .about_box{
+    background: rgba(255, 255, 255, 0.500);
+}
+main.day .social_media .tooltiptext, main.day .day_night_content, main.night .day_night_content{
+    background: #fff;
+}
+main.day .social_media .tooltiptext::before{
+    border-color: transparent transparent #fff transparent;
+}
+main.day nav a, main.day .tooltiptext, main.day .title, main.day .header_info span{
+    color: #213457;
+}
+main.day .nav_logo, main.day .header_text, main.day .header_info h3, main.day .day_night_content, main.day .content_titles{
+    color: #212529;
+}
+main.day .day_night_content span:hover, main.day .btn{
+    color: #fff;
+}
+main.day .about_text, main.day .skills_about_text, main.day .contact_content_text, main.day .comments_text{
+    color: #424446;
+}
+/* Main night mode */
+main.night .container_glass, main.night .about_box{
+    background: rgba(0, 0, 0, 0.600);
+}
+main.night nav a, main.night .tooltiptext, main.night .title, main.night .header_info span{
+    color: #eee;
+}
+main.night .nav_logo, main.night .header_text, main.night .header_info h3, main.night .day_night_content, main.night .content_titles, main.night .contact_box_title, main.night .comments_label{
+    color: #ccc;
+}
+main.night .about_text, main.night .skills_about_text, main.night .contact_content_text, main.night .comments_text, main.night .contact_box_link{
+    color: #bbb;
+}
+main.night .comment, main.night .social_media .tooltiptext{
+    background: #aaa;
+}
+main.night .social_media .tooltiptext::before{
+    border-color: transparent transparent #aaa transparent;
+}
