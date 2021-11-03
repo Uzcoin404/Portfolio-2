@@ -358,7 +358,7 @@ nav.sticky .menu_btn_span, nav.active .menu_btn_span, nav.sticky .menu_btn::befo
 }
 /* About Section Styling */
 .main_content section{
-    padding: 50px 0;
+    margin: 50px 0;
 }
 .main_content .container_glass{
     padding: 25px 15px;
@@ -703,7 +703,7 @@ nav.sticky .menu_btn_span, nav.active .menu_btn_span, nav.sticky .menu_btn::befo
 .glide_items{
     display: flex;
     flex-direction: column;
-    background: rgba(255, 255, 255, 0.600);
+    background: rgba(255, 255, 255, 0.800);
     padding: 10px;
     border-radius: 5px;
     position: fixed;

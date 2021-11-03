@@ -76,7 +76,7 @@ const config = {
     perView: 1,
     startAt: 3,
     gap: 50,
-    // autoplay: 5000,
+    autoplay: 4000,
     600: {
         gap: 15
     },

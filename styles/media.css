@@ -70,8 +70,18 @@
     .comment, .service_card{
         max-width: 400px;
     }
+    .logo_text{
+        font-size: 28px;
+    }
+    .logo{
+        width: 40px !important;
+        height: 40px !important;
+    }
+    .day_night{
+        margin: 0 10px;
+    }
 }
-@media (max-width: 850px){
+@media (max-width: 900px){
     .menu_btn_blog{
         display: block;
     }
@@ -255,7 +265,6 @@
         max-width: 100%;
     }
     .day_night{
-        margin: 0 10px;
         font-size: 28px;
     }
     .about_box:nth-child(1), .header_blog .container_glass{
@@ -294,5 +303,12 @@
     }
     .glide_icons{
         font-size: 20px !important;
+    }
+    .logo_text{
+        font-size: 26px;
+    }
+    .logo{
+        width: 35px !important;
+        height: 35px !important;
     }
 }
