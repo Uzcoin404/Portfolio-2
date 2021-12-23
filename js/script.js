@@ -1,3 +1,20 @@
+window.addEventListener('load', function(){
+    this.document.querySelector('.loader').style.display = 'none';
+});
+var cnt=document.getElementById("count"); 
+var water=document.getElementById("water");
+var percent=cnt.innerText;
+var interval;
+interval=setInterval(function(){ 
+  percent++; 
+  cnt.innerHTML = percent; 
+  water.style.transform='translate(0'+','+(100-percent)+'%)';
+  if(percent==100){
+    setTimeout(() => {
+        percent = 0;
+    }, 100);
+  }
+},75);
 AOS.init();
 // Menu btn
 const menuBtn = document.querySelector('.menu_btn_blog');
@@ -69,6 +86,7 @@ function readMoreFnc() {
         }
     }
 }
+
 readMoreFnc();
 // glide slider
 const config = {
@@ -181,6 +199,43 @@ window.addEventListener('click', function(e) {
             menuBtn.classList.remove('active');
             nav.classList.remove('active');
             isMenu = false;
+        }
+    }
+});
+const comment = document.querySelectorAll('.comment');
+const commentEditForm = document.querySelectorAll('.comment_edit_form');
+const editCommentBtn = document.querySelectorAll('#edit');
+const delCommentBtn = document.querySelectorAll('#delete');
+const deleteAlert = document.querySelector('.delete_alert');
+const cancelCommentBtn = document.querySelectorAll('.cancel_comment_btn');
+const commentText = document.querySelectorAll('.comment_text');
+for (let i = 0; i < editCommentBtn.length; i++) {   
+    let commentWidth = comment[i].offsetWidth;
+    editCommentBtn[i].addEventListener('click', function(e){
+        e.preventDefault();
+        commentText[i].style.display = 'none';
+        commentEditForm[i].style.display = 'block';
+        comment[i].style.width = commentWidth + 'px';
+    });
+    cancelCommentBtn[i].addEventListener('click', function(){
+        commentText[i].style.display = 'block';
+        commentEditForm[i].style.display = 'none';
+    });
+    delCommentBtn[i].addEventListener('click', function(e){
+        e.preventDefault();
+        let delHref = this.getAttribute('href');
+        deleteAlert.querySelector('.btn').href = delHref;
+    });
+}
+window.addEventListener('click', function(e){
+    for (let i = 0; i < delCommentBtn.length; i++) { 
+        if (e.target != delCommentBtn[i] && e.target != delCommentBtn[i].querySelector('i') && e.target != deleteAlert) {
+            deleteAlert.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        } else{
+            deleteAlert.classList.add('active');
+            document.body.style.overflow = 'hidden';
+            break;
         }
     }
 });

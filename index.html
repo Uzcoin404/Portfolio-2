@@ -14,22 +14,63 @@
 <body>
 
     <main class="main day">
+        
+        <div class="loader">
+            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" style="display: none;">
+                <symbol id="wave">
+                <path d="M420,20c21.5-0.4,38.8-2.5,51.1-4.5c13.4-2.2,26.5-5.2,27.3-5.4C514,6.5,518,4.7,528.5,2.7c7.1-1.3,17.9-2.8,31.5-2.7c0,0,0,0,0,0v20H420z"></path>
+                <path d="M420,20c-21.5-0.4-38.8-2.5-51.1-4.5c-13.4-2.2-26.5-5.2-27.3-5.4C326,6.5,322,4.7,311.5,2.7C304.3,1.4,293.6-0.1,280,0c0,0,0,0,0,0v20H420z"></path>
+                <path d="M140,20c21.5-0.4,38.8-2.5,51.1-4.5c13.4-2.2,26.5-5.2,27.3-5.4C234,6.5,238,4.7,248.5,2.7c7.1-1.3,17.9-2.8,31.5-2.7c0,0,0,0,0,0v20H140z"></path>
+                <path d="M140,20c-21.5-0.4-38.8-2.5-51.1-4.5c-13.4-2.2-26.5-5.2-27.3-5.4C46,6.5,42,4.7,31.5,2.7C24.3,1.4,13.6-0.1,0,0c0,0,0,0,0,0l0,20H140z"></path>
+                </symbol>
+            </svg>
+            <div class="box">
+                <div class="percent">
+                <div class="percentNum" id="count">0</div>
+                <div class="percentB">%</div>
+                </div>
+                <div id="water" class="water">
+                <svg viewBox="0 0 560 20" class="water_wave water_wave_back">
+                    <use xlink:href="#wave"></use>
+                </svg>
+                <svg viewBox="0 0 560 20" class="water_wave water_wave_front">
+                    <use xlink:href="#wave"></use>
+                </svg>
+                </div>
+            </div>
+        </div>
+
+        <div class="delete_alert">
+            <p class="delete_alert_text">Do you really want to delete this comment</p>
+            <a href="#" class="btn delete_alert_btn">Yes</a>
+        </div>
+
         <header class="header" id="home">
             <nav class="nav">
                 <div class="container_glass">
                     <div class="nav_blog">
-                        <a href="/" class="nav_logo"><img src="img/icon.jpg" alt="" class="logo"><p class="logo_text">Uzcoin</p></a>
+                        <a href="/" class="nav_logo"><p class="logo_text">Uzcoin</p></a>
                         <ul class="nav_list">
-                            <li><a href="#home" class="nav_link">Home</a></li>
-                            <li><a href="#about" class="nav_link">About</a></li>
-                            <li><a href="#skills" class="nav_link">Skills</a></li>
-                            <li><a href="#projects" class="nav_link">Projects</a></li>
-                            <li><a href="#service" class="nav_link">Service</a></li>
-                            <li><a href="#contact" class="nav_link">Contact</a></li>
-                            <li><a href="#comments" class="nav_link">Comments</a></li>
+                            <li><a href="../#home" class="nav_link">Home</a></li>
+                            <li><a href="../#about" class="nav_link">About</a></li>
+                            <li><a href="../#skills" class="nav_link">Skills</a></li>
+                            <li><a href="../#projects" class="nav_link">Projects</a></li>
+                            <li><a href="../#service" class="nav_link">Service</a></li>
+                            <li><a href="../#contact" class="nav_link">Contact</a></li>
+                            <li><a href="../#comments" class="nav_link">Comments</a></li>
                         </ul>
                         <div class="nav_functions">
-                            <a href="#" class="btn nav_button">Sign up</a>
+                            <!-- <a href="#" class="btn nav_button">Sign up</a> -->
+                            <div class="profile_nav">
+                                <div class="profile_image">
+                                    <h5 class="profile_name">Suyunbek</h5>
+                                    <img src="../img/icon.jpg" alt="" class="profile_img">
+                                </div>
+                                <div class="profile_content">
+                                    <span><a href="pages/profile_info.html" class="profile_text">Profile info</a></span>
+                                    <span><p class="log_out">Log out</p></span>
+                                </div>
+                            </div>
                             <div class="day_night">
                                 <div class="day_night_indicator"><i class="far fa-sun"></i></div>
                                 <div class="day_night_content">
@@ -429,73 +470,101 @@
                     <div class="comments_content">
                         <div class="comment" data-aos="flip-left" data-aos-duration="1000">
                             <div class="comment_img_blog">
-                                <a href="#"><img src="img/about_img.jpeg" alt="" class="comment_img"></a>
+                                <a href="#"><img src="../img/about_img.jpeg" alt="" class="comment_img" title="View profile"></a>
                             </div>
                             <div class="comment_body">
                                 <div class="comment_item">
                                     <p class="comment_text">Welcome back! You can write feedback (Coming soon), For this Scroll up page | Xush Kelibsiz! Bu kommentariya tizimi. Bu yerda o'z fikr mulohazangizni yozasiz va boshqalar fikrini ham ko'ra olasiz (Tez orada) </p>
+                                    <form action="" method="post" class="comment_edit_form" style="display: none;">
+                                        <textarea name="comment" class="comment_area" maxlength="300" placeholder="Message" required></textarea>
+                                        <div class="edit_comment_buttons">
+                                            <button class="btn edit_comment_button edit_comment_btn" type="submit">Save</button>
+                                            <button class="btn edit_comment_button cancel_comment_btn" type="button">Cancel</button>
+                                        </div>
+                                    </form>
                                     <div class="comment_functions">
-                                        <a href="#" class="comment_function" id="edit"><i class="fas fa-pen"></i></a href="#">
-                                        <a href="#" class="comment_function" id="delete"><i class="fas fa-trash"></i></a href="#">
+                                        <a href="#" class="comment_function" id="edit" title="Edit comment"><i class="fas fa-pen"></i></a href="#">
+                                        <a href="#" class="comment_function" id="delete" title="Delete comment"><i class="fas fa-trash"></i></a href="#">
                                     </div>
                                 </div>
                                 <div class="comment_footer">
-                                    <a href="#" class="comment_name">Suyunbek</a>
-                                    <p class="comment_date">2021-10-26 09:42</p>
+                                    <a href="#" class="comment_name" title="View profile">Suyunbek</a>
+                                    <p class="comment_date" title="Comment created Date">2021-10-26 09:42</p>
                                 </div>
                             </div>
                         </div>
                         <div class="comment" data-aos="flip-right" data-aos-duration="1000" data-aos-delay="100">
                             <div class="comment_img_blog">
-                                <a href="#"><img src="img/about_img.jpeg" alt="" class="comment_img"></a>
+                                <a href="#"><img src="../img/about_img.jpeg" alt="" class="comment_img" title="View profile"></a>
                             </div>
                             <div class="comment_body">
                                 <div class="comment_item">
                                     <p class="comment_text">Welcome back! You can write feedback (Coming soon), For this Scroll up page | Xush Kelibsiz! Bu kommentariya tizimi. Bu yerda o'z fikr mulohazangizni yozasiz va boshqalar fikrini ham ko'ra olasiz (Tez orada) </p>
+                                    <form action="" method="post" class="comment_edit_form" style="display: none;">
+                                        <textarea name="comment" class="comment_area" maxlength="300" placeholder="Message" required></textarea>
+                                        <div class="edit_comment_buttons">
+                                            <button class="btn edit_comment_button edit_comment_btn" type="submit">Save</button>
+                                            <button class="btn edit_comment_button cancel_comment_btn" type="button">Cancel</button>
+                                        </div>
+                                    </form>
                                     <div class="comment_functions">
-                                        <a href="#" class="comment_function" id="edit"><i class="fas fa-pen"></i></a href="#">
-                                        <a href="#" class="comment_function" id="delete"><i class="fas fa-trash"></i></a href="#">
+                                        <a href="#" class="comment_function" id="edit" title="Edit comment"><i class="fas fa-pen"></i></a href="#">
+                                        <a href="#" class="comment_function" id="delete" title="Delete comment"><i class="fas fa-trash"></i></a href="#">
                                     </div>
                                 </div>
                                 <div class="comment_footer">
-                                    <a href="#" class="comment_name">Suyunbek</a>
-                                    <p class="comment_date">2021-10-26 09:42</p>
+                                    <a href="#" class="comment_name" title="View profile">Suyunbek</a>
+                                    <p class="comment_date" title="Comment created Date">2021-10-26 09:42</p>
                                 </div>
                             </div>
                         </div>
                         <div class="comment" data-aos="flip-left" data-aos-duration="1000" data-aos-delay="200">
                             <div class="comment_img_blog">
-                                <a href="#"><img src="img/about_img.jpeg" alt="" class="comment_img"></a>
+                                <a href="#"><img src="../img/about_img.jpeg" alt="" class="comment_img" title="View profile"></a>
                             </div>
                             <div class="comment_body">
                                 <div class="comment_item">
                                     <p class="comment_text">Welcome back! You can write feedback (Coming soon), For this Scroll up page | Xush Kelibsiz! Bu kommentariya tizimi. Bu yerda o'z fikr mulohazangizni yozasiz va boshqalar fikrini ham ko'ra olasiz (Tez orada) </p>
+                                    <form action="" method="post" class="comment_edit_form" style="display: none;">
+                                        <textarea name="comment" class="comment_area" maxlength="300" placeholder="Message" required></textarea>
+                                        <div class="edit_comment_buttons">
+                                            <button class="btn edit_comment_button edit_comment_btn" type="submit">Save</button>
+                                            <button class="btn edit_comment_button cancel_comment_btn" type="button">Cancel</button>
+                                        </div>
+                                    </form>
                                     <div class="comment_functions">
-                                        <a href="#" class="comment_function" id="edit"><i class="fas fa-pen"></i></a href="#">
-                                        <a href="#" class="comment_function" id="delete"><i class="fas fa-trash"></i></a href="#">
+                                        <a href="#" class="comment_function" id="edit" title="Edit comment"><i class="fas fa-pen"></i></a href="#">
+                                        <a href="#" class="comment_function" id="delete" title="Delete comment"><i class="fas fa-trash"></i></a href="#">
                                     </div>
                                 </div>
                                 <div class="comment_footer">
-                                    <a href="#" class="comment_name">Suyunbek</a>
-                                    <p class="comment_date">2021-10-26 09:42</p>
+                                    <a href="#" class="comment_name" title="View profile">Suyunbek</a>
+                                    <p class="comment_date" title="Comment created Date">2021-10-26 09:42</p>
                                 </div>
                             </div>
                         </div>
                         <div class="comment" data-aos="flip-right" data-aos-duration="1000" data-aos-delay="300">
                             <div class="comment_img_blog">
-                                <a href="#"><img src="img/about_img.jpeg" alt="" class="comment_img"></a>
+                                <a href="#"><img src="../img/about_img.jpeg" alt="" class="comment_img" title="View profile"></a>
                             </div>
                             <div class="comment_body">
                                 <div class="comment_item">
                                     <p class="comment_text">Welcome back! You can write feedback (Coming soon), For this Scroll up page | Xush Kelibsiz! Bu kommentariya tizimi. Bu yerda o'z fikr mulohazangizni yozasiz va boshqalar fikrini ham ko'ra olasiz (Tez orada) </p>
+                                    <form action="" method="post" class="comment_edit_form" style="display: none;">
+                                        <textarea name="comment" class="comment_area" maxlength="300" placeholder="Message" required></textarea>
+                                        <div class="edit_comment_buttons">
+                                            <button class="btn edit_comment_button edit_comment_btn" type="submit">Save</button>
+                                            <button class="btn edit_comment_button cancel_comment_btn" type="button">Cancel</button>
+                                        </div>
+                                    </form>
                                     <div class="comment_functions">
-                                        <a href="#" class="comment_function" id="edit"><i class="fas fa-pen"></i></a href="#">
-                                        <a href="#" class="comment_function" id="delete"><i class="fas fa-trash"></i></a href="#">
+                                        <a href="#" class="comment_function" id="edit" title="Edit comment"><i class="fas fa-pen"></i></a href="#">
+                                        <a href="#" class="comment_function" id="delete" title="Delete comment"><i class="fas fa-trash"></i></a href="#">
                                     </div>
                                 </div>
                                 <div class="comment_footer">
-                                    <a href="#" class="comment_name">Suyunbek</a>
-                                    <p class="comment_date">2021-10-26 09:42</p>
+                                    <a href="#" class="comment_name" title="View profile">Suyunbek</a>
+                                    <p class="comment_date" title="Comment created Date">2021-10-26 09:42</p>
                                 </div>
                             </div>
                         </div>

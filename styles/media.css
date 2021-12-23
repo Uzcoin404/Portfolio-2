@@ -218,6 +218,12 @@
     }
 }
 @media (max-width: 420px){
+    .nav_logo{
+        display: none;
+    }
+    .profile_nav{
+        margin-right: 50px;
+    }
     .skills_app{
         width: 320px;
         height: 320px;
