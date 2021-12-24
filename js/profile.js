@@ -53,23 +53,26 @@ const menuIcon = document.querySelector('.menu_btn');
 const menuSpan = document.querySelector('.menu_btn_span');
 window.addEventListener('click', function(e) {
     if (isMenu) {   
-        if (e.target == menuIcon || e.target == menuSpan || e.target == navList) {
-            nav.classList.remove('active');
-        } else{
+        if (e.target != menuIcon && e.target != menuSpan && e.target != navList) {
             menuBtn.classList.remove('active');
             nav.classList.remove('active');
             isMenu = false;
+        } else{
+            nav.classList.add('active');
+            menuBtn.classList.add('active');
         }
     }
 });
 const profileComments = document.querySelector('.profile_user_comments');
+const profilePanel = document.querySelector('.profile_panel');
 const commentEditForm = document.querySelectorAll('.comment_edit_form');
 const editCommentBtn = document.querySelectorAll('#edit');
 const delCommentBtn = document.querySelectorAll('#delete');
 const deleteAlert = document.querySelector('.delete_alert');
 const cancelCommentBtn = document.querySelectorAll('.cancel_comment_btn');
 const commentText = document.querySelectorAll('.comment_text');
-profileComments.querySelector('.profile_comments_content').style.maxHeight = profileComments.offsetHeight + 50 + 'px';
+profileComments.querySelector('.profile_comments_content').style.height = profilePanel.offsetHeight - 50 + 'px';
+console.log(profilePanel.offsetHeight);
 for (let i = 0; i < editCommentBtn.length; i++) {   
     editCommentBtn[i].addEventListener('click', function(e){
         e.preventDefault();

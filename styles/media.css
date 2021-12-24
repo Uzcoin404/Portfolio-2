@@ -166,6 +166,7 @@
     }
     .profile_comments{
         grid-column: span 16;
+        padding: 15px;
     }
 }
 @media (max-width: 650px){
@@ -238,6 +239,17 @@
     .skills_img5{
         top: 250px;
         right: 0;
+    }
+    .profile_main{
+        display: flex;
+        flex-direction: column;
+    }
+    .form_items{
+        grid-column: span 4;
+    }
+    .user_avatar{
+        max-width: 300px;
+        max-height: 300px;
     }
 }
 @media (max-width: 420px){

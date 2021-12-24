@@ -1255,6 +1255,9 @@ nav.sticky .menu_btn_span, nav.active .menu_btn_span, nav.sticky .menu_btn::befo
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
     grid-gap: 15px;
 }
+.profile_comments, .profile_main, .profile_panel{
+    min-height: 640px;
+}
 .profile_panel{
     grid-column: span 4;
     display: flex;
@@ -1262,7 +1265,7 @@ nav.sticky .menu_btn_span, nav.active .menu_btn_span, nav.sticky .menu_btn::befo
     justify-content: center;
     align-items: center;
     border-radius: 25px;
-    padding: 10px 20px;
+    padding: 15px 20px;
     backdrop-filter: blur(20px);
 }
 .user_avatar{
@@ -1325,15 +1328,17 @@ nav.sticky .menu_btn_span, nav.active .menu_btn_span, nav.sticky .menu_btn::befo
 /* Profile main styling */
 .profile_main{
     grid-column: span 7;
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    height: 100%;
 }
 .about_profile{
-    padding: 10px 15px;
+    padding: 15px;
     border-radius: 25px;
-    height: max-content;
 }
 .about_profile_title, .edit_profile_title, .profile_comments_title{
     font-size: 24px;
-    padding-bottom: 15px;
+    padding-bottom: 20px;
 }
 .user_info{
     width: 100%;
@@ -1355,7 +1360,7 @@ nav.sticky .menu_btn_span, nav.active .menu_btn_span, nav.sticky .menu_btn::befo
 /* Profile edit styling */
 .edit_profile{
     margin-top: 15px;
-    padding: 10px 15px;
+    padding: 15px;
     border-radius: 25px;
 }
 .profile_form{
@@ -1409,7 +1414,7 @@ nav.sticky .menu_btn_span, nav.active .menu_btn_span, nav.sticky .menu_btn::befo
 /* Profile comments styling */
 .profile_comments{
     grid-column: span 5;
-    padding: 10px;
+    padding: 15px 10px;
     border-radius: 25px;
 }
 .profile_user_comments{
@@ -1417,7 +1422,7 @@ nav.sticky .menu_btn_span, nav.active .menu_btn_span, nav.sticky .menu_btn::befo
 }
 .profile_comments_content{
     overflow-y: auto;
-    max-height: 500px;
+    max-height: 640px;
 }
 .profile_comments_content::-webkit-scrollbar{
     width: 7px;
@@ -1519,6 +1524,13 @@ nav.sticky .menu_btn_span, nav.active .menu_btn_span, nav.sticky .menu_btn::befo
     padding-bottom: 10px;
 }
 /* Image uploader change photo */
+.photo_form{
+    background: #191927;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 .form__imgUploader{
     width: 300px;
     text-align: center;
