@@ -53,6 +53,20 @@
         justify-content: space-evenly;
     }
 }
+@media (max-width: 1050px) {
+    .profile_panel{
+        grid-column: span 6;
+    }
+    .profile_main{
+        grid-column: span 10;
+    }
+    .profile_comments{
+        grid-column: span 16;
+    }
+    .comment{
+        max-width: 100% !important;
+    }
+}
 @media (max-width: 992px) {
     .skills_cards{
         justify-content: space-evenly;
@@ -143,6 +157,15 @@
     }
     .header_img{
         width: 70%;
+    }
+    .profile_panel{
+        grid-column: span 16;
+    }
+    .profile_main{
+        grid-column: span 16;
+    }
+    .profile_comments{
+        grid-column: span 16;
     }
 }
 @media (max-width: 650px){

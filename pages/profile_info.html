@@ -67,6 +67,9 @@
                     <div class="profile_panel">
                         <div class="user_avatar">
                             <img src="../img/icon.jpg" alt="" class="user_img">
+                            <div class="user_avatar_content">
+                                <a href="./change-avatar.html" class="user_avatar_change"><span><i class="fas fa-edit"></i>Change photo</span></a>
+                            </div>
                         </div>
                         <h2 class="user_title">Suyunbek</h2>
                         <p class="username">@MrUzcoin</p>
@@ -88,7 +91,7 @@
                     </div>
                     <div class="profile_main">
                         <div class="about_profile">
-                            <h2 class="about_profile_title">About your Profile</h2>
+                            <h2 class="about_profile_title"><i class="fas fa-info-circle"></i> About your Profile</h2>
                             <div class="user_info">
                                 <div class="user_info_item">
                                     <p class="user_info_title">Name</p>
@@ -113,7 +116,7 @@
                             </div>
                         </div>
                         <div class="edit_profile" style="display: block;">
-                            <h2 class="edit_profile_title">Edit your Profile</h2>
+                            <h2 class="edit_profile_title"><i class="fas fa-user-edit"></i> Edit your Profile</h2>
                             <form action="" method="post" class="profile_form">
                                 <div class="form_items">
                                     <label for="name" class="form_label">Your name</label>
@@ -140,17 +143,17 @@
                                     <label for="bio" class="form_label">Your Bio</label>
                                     <input type="text" name="bio" class="form_input" placeholder="bio...">
                                 </div>
-                                <button type="submit" class="btn submit_btn" title="Save changes">Save</button>
+                                <button type="submit" class="btn submit_btn" title="Save changes">Save <i class="fas fa-save"></i></button>
                                 <button type="reset" class="btn reset_btn" title="Reset inputs">Reset All</button>
                             </form>
                         </div>
                     </div>
                     <div class="profile_comments">
-                        <h2 class="profile_comments_title">Your Comments</h2>
+                        <h2 class="profile_comments_title"><i class="fas fa-comments"></i> Your Comments</h2>
                         <div class="profile_comments_main">
                             <div class="profile_user_comments">
                                 <div class="profile_comments_content">
-                                    <div class="comment" data-aos="flip-right" data-aos-duration="1000" data-aos-delay="300">
+                                    <div class="comment" data-aos="flip-left" data-aos-duration="1000" data-aos-delay="200">
                                         <div class="comment_img_blog">
                                             <a href="#"><img src="../img/about_img.jpeg" alt="" class="comment_img" title="View profile"></a>
                                         </div>
@@ -158,7 +161,7 @@
                                             <div class="comment_item">
                                                 <p class="comment_text">Welcome back! You can write feedback (Coming soon), For this Scroll up page | Xush Kelibsiz! Bu kommentariya tizimi. Bu yerda o'z fikr mulohazangizni yozasiz va boshqalar fikrini ham ko'ra olasiz (Tez orada) </p>
                                                 <form action="" method="post" class="comment_edit_form" style="display: none;">
-                                                    <textarea name="comment" class="comment_area" maxlength="300" placeholder="Message" required></textarea>
+                                                    <textarea name="comment" class="comment_area" placeholder="Message" required></textarea>
                                                     <div class="edit_comment_buttons">
                                                         <button class="btn edit_comment_button edit_comment_btn" type="submit">Save</button>
                                                         <button class="btn edit_comment_button cancel_comment_btn" type="button">Cancel</button>
