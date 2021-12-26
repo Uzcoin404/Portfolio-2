@@ -32,7 +32,7 @@ menuBtn.addEventListener('click', function(){
     }
 });
 // animate navbar
-function navScroll() {   
+function navScroll() {
     var lastScrollTop = 0, delta = 50;
     $(window).scroll(function(){
         var nowScrollTop = $(this).scrollTop();
@@ -52,21 +52,47 @@ function navScroll() {
     });
 }
 navScroll();
+
+let daysToExpire = new Date(2147483647 * 1000).toUTCString();
+function getCookie(cName) {
+    let name = cName + '=';
+    let decodedCookie = decodeURIComponent(document.cookie);
+    let ca = decodedCookie.split(';');
+    for (let i = 0; i < ca.length; i++) {
+        let c = ca[i];
+        while (c.charAt(0) == ' ') {
+            c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
+        }
+    }
+}
+
 // day night mode
+const main = document.querySelector('.main');
+const day = document.querySelector('.day_icon');
+const night = document.querySelector('.night_icon');
 function dayNight(){
-    const main = document.querySelector('.main');
-    const day = document.querySelector('.day_icon');
-    const night = document.querySelector('.night_icon');
     day.addEventListener('click', function(){
         main.classList.remove('night');
         main.classList.add('day');
+        document.cookie = `theme=day; expires=${daysToExpire}`;
     });
     night.addEventListener('click', function(){
         main.classList.remove('day');
         main.classList.add('night');
+        document.cookie = `theme=night; expires=${daysToExpire}`;
     });
 }
 dayNight();
+if (getCookie('theme') == 'day') {
+    main.classList.remove('night');
+    main.classList.add('day');
+} else if (getCookie('theme') == 'night') {
+    main.classList.remove('day');
+    main.classList.add('night');
+}
 // Read more 
 function readMoreFnc() {
     const readMore = document.querySelectorAll('.read_more');

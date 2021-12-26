@@ -42,7 +42,7 @@ main.night .about_text, main.night .skills_about_text, main.night .contact_conte
 main.night .comment, main.night .social_media .tooltiptext, main.night .profile_content, .main.night .form_input{
     background: #d6d6d6;
 }
-.main.night .form_input::placeholder, main.night .profile_content {
+.main.night .form_input::placeholder, main.night .profile_content, main.night .tooltiptext, main.night .profile_text {
     color: #222;
 }
 main.night .social_media .tooltiptext::before{
