@@ -1,3 +1,10 @@
+<?
+include_once('./components/db.php');
+$isMyProfile = $_SESSION['username'] && !$getId ? true : false;
+$myProfile = getUser($_SESSION['id']);
+$comments = getComments();
+$sizeComments = count($comments);
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -429,21 +436,22 @@
                 <div class="container_glass">
                     <h2 class="title comments_title">What <span>my clients</span> Say ?</h2>
                     <div class="comments_content">
-                        <div class="comment" data-aos="flip-left" data-aos-duration="1000">
+                    <? for ($i=$sizeComments-1; $i > 0; $i--): ?>
+                        <div class="comment">
                             <div class="comment_img_blog">
                                 <a href="#"><img src="../img/about_img.jpeg" alt="" class="comment_img" title="View profile"></a>
                             </div>
                             <div class="comment_body">
                                 <div class="comment_item">
-                                    <p class="comment_text">Welcome back! You can write feedback (Coming soon), For this Scroll up page | Xush Kelibsiz! Bu kommentariya tizimi. Bu yerda o'z fikr mulohazangizni yozasiz va boshqalar fikrini ham ko'ra olasiz (Tez orada) </p>
+                                    <p class="comment_text"><?= $comments[$i]['comment']?></p>
                                     <form action="" method="post" class="comment_edit_form" style="display: none;">
-                                        <textarea name="comment" class="comment_area" maxlength="300" placeholder="Message" required></textarea>
+                                        <textarea name="comment" class="comment_area" placeholder="Message" required></textarea>
                                         <div class="edit_comment_buttons">
                                             <button class="btn edit_comment_button edit_comment_btn" type="submit">Save</button>
                                             <button class="btn edit_comment_button cancel_comment_btn" type="button">Cancel</button>
                                         </div>
                                     </form>
-                                    <div class="comment_functions">
+                                    <div class="comment_functions" style="display: <?= $isMyProfile ? 'flex' : 'none'?>;">
                                         <a href="#" class="comment_function" id="edit" title="Edit comment"><i class="fas fa-pen"></i></a href="#">
                                         <a href="#" class="comment_function" id="delete" title="Delete comment"><i class="fas fa-trash"></i></a href="#">
                                     </div>
@@ -454,81 +462,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="comment" data-aos="flip-right" data-aos-duration="1000" data-aos-delay="100">
-                            <div class="comment_img_blog">
-                                <a href="#"><img src="../img/about_img.jpeg" alt="" class="comment_img" title="View profile"></a>
-                            </div>
-                            <div class="comment_body">
-                                <div class="comment_item">
-                                    <p class="comment_text">Welcome back! You can write feedback (Coming soon), For this Scroll up page | Xush Kelibsiz! Bu kommentariya tizimi. Bu yerda o'z fikr mulohazangizni yozasiz va boshqalar fikrini ham ko'ra olasiz (Tez orada) </p>
-                                    <form action="" method="post" class="comment_edit_form" style="display: none;">
-                                        <textarea name="comment" class="comment_area" maxlength="300" placeholder="Message" required></textarea>
-                                        <div class="edit_comment_buttons">
-                                            <button class="btn edit_comment_button edit_comment_btn" type="submit">Save</button>
-                                            <button class="btn edit_comment_button cancel_comment_btn" type="button">Cancel</button>
-                                        </div>
-                                    </form>
-                                    <div class="comment_functions">
-                                        <a href="#" class="comment_function" id="edit" title="Edit comment"><i class="fas fa-pen"></i></a href="#">
-                                        <a href="#" class="comment_function" id="delete" title="Delete comment"><i class="fas fa-trash"></i></a href="#">
-                                    </div>
-                                </div>
-                                <div class="comment_footer">
-                                    <a href="#" class="comment_name" title="View profile">Suyunbek</a>
-                                    <p class="comment_date" title="Comment created Date">2021-10-26 09:42</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="comment" data-aos="flip-left" data-aos-duration="1000" data-aos-delay="200">
-                            <div class="comment_img_blog">
-                                <a href="#"><img src="../img/about_img.jpeg" alt="" class="comment_img" title="View profile"></a>
-                            </div>
-                            <div class="comment_body">
-                                <div class="comment_item">
-                                    <p class="comment_text">Welcome back! You can write feedback (Coming soon), For this Scroll up page | Xush Kelibsiz! Bu kommentariya tizimi. Bu yerda o'z fikr mulohazangizni yozasiz va boshqalar fikrini ham ko'ra olasiz (Tez orada) </p>
-                                    <form action="" method="post" class="comment_edit_form" style="display: none;">
-                                        <textarea name="comment" class="comment_area" maxlength="300" placeholder="Message" required></textarea>
-                                        <div class="edit_comment_buttons">
-                                            <button class="btn edit_comment_button edit_comment_btn" type="submit">Save</button>
-                                            <button class="btn edit_comment_button cancel_comment_btn" type="button">Cancel</button>
-                                        </div>
-                                    </form>
-                                    <div class="comment_functions">
-                                        <a href="#" class="comment_function" id="edit" title="Edit comment"><i class="fas fa-pen"></i></a href="#">
-                                        <a href="#" class="comment_function" id="delete" title="Delete comment"><i class="fas fa-trash"></i></a href="#">
-                                    </div>
-                                </div>
-                                <div class="comment_footer">
-                                    <a href="#" class="comment_name" title="View profile">Suyunbek</a>
-                                    <p class="comment_date" title="Comment created Date">2021-10-26 09:42</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="comment" data-aos="flip-right" data-aos-duration="1000" data-aos-delay="300">
-                            <div class="comment_img_blog">
-                                <a href="#"><img src="../img/about_img.jpeg" alt="" class="comment_img" title="View profile"></a>
-                            </div>
-                            <div class="comment_body">
-                                <div class="comment_item">
-                                    <p class="comment_text">Welcome back! You can write feedback (Coming soon), For this Scroll up page | Xush Kelibsiz! Bu kommentariya tizimi. Bu yerda o'z fikr mulohazangizni yozasiz va boshqalar fikrini ham ko'ra olasiz (Tez orada) </p>
-                                    <form action="" method="post" class="comment_edit_form" style="display: none;">
-                                        <textarea name="comment" class="comment_area" maxlength="300" placeholder="Message" required></textarea>
-                                        <div class="edit_comment_buttons">
-                                            <button class="btn edit_comment_button edit_comment_btn" type="submit">Save</button>
-                                            <button class="btn edit_comment_button cancel_comment_btn" type="button">Cancel</button>
-                                        </div>
-                                    </form>
-                                    <div class="comment_functions">
-                                        <a href="#" class="comment_function" id="edit" title="Edit comment"><i class="fas fa-pen"></i></a href="#">
-                                        <a href="#" class="comment_function" id="delete" title="Delete comment"><i class="fas fa-trash"></i></a href="#">
-                                    </div>
-                                </div>
-                                <div class="comment_footer">
-                                    <a href="#" class="comment_name" title="View profile">Suyunbek</a>
-                                    <p class="comment_date" title="Comment created Date">2021-10-26 09:42</p>
-                                </div>
-                            </div>
-                        </div>
+                    <?endfor;?>
                     </div>
                     <a href="#" class="btn load_more" data-aos="fade-down" data-aos-duration="1000" data-aos-delay="400">Load more</a>
                 </div>

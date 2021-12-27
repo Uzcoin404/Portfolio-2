@@ -90,4 +90,22 @@ function editProfile($id, $name, $username, $email, $phone, $password, $bio){
     }
     return $result;
 }
+function getComments(){
+    $pdo = pdo();
+    $query = "SELECT * FROM comments";
+    $driver = $pdo->prepare($query);
+    $result = $driver->execute();
+    $comments = $driver->fetchAll(PDO::FETCH_ASSOC);
+    return $comments;
+}
+function setComments($username, $comment, $date){
+    $pdo = pdo();
+    $query = "INSERT INTO comments (`username`, `comment`, `date`) VALUES (?,?,?)";
+    $driver = $pdo->prepare($query);
+    $result = $driver->execute([$username,$comment,$date]);
+    if ($driver->errorInfo()[0] != '00000') {
+        var_dump($driver->errorInfo());
+    }
+    return $result;
+}
 ?>
