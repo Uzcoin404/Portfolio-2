@@ -1425,6 +1425,7 @@ nav.sticky .menu_btn_span, nav.active .menu_btn_span, nav.sticky .menu_btn::befo
 .profile_comments_content{
     overflow-y: auto;
     max-height: 640px;
+    border-radius: 25px;
 }
 .profile_comments_content::-webkit-scrollbar{
     width: 7px;

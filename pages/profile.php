@@ -1,3 +1,13 @@
+<?
+    include_once('./components/db.php');
+    $getId = $_GET['id'];
+    $isMyProfile = $_SESSION['username'] && !$getId ? true : false;
+    $myProfile = getUser($_SESSION['id']);
+    $user = getUser($getId);
+    $isProfile = $_GET['route'] == 'profile';
+    if(!$isMyProfile && !$getId): header("Location: ../?route=main&nologin=true");
+    else :
+?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -6,9 +16,9 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Suyunbek Profile</title>
         <link rel="stylesheet" href="../styles/all.min.css">
-        <link rel="stylesheet" href="../styles/color.css">
-        <link rel="stylesheet" href="../styles/style.css">
-        <link rel="stylesheet" href="../styles/media.css">
+        <link rel="stylesheet" href="../styles/color.css?v=<?= time();?>">
+        <link rel="stylesheet" href="../styles/style.css?v=<?= time();?>">
+        <link rel="stylesheet" href="../styles/media.css?v=<?= time();?>">
         <link rel="icon" href="../img/icon.jpg">
     </head>
     <body>
@@ -16,7 +26,7 @@
     <main class="main day profile_body">
         <div class="profile">
 
-            <nav class="nav">
+            <!-- <nav class="nav">
                 <div class="container_glass">
                     <div class="nav_blog">
                         <a href="/" class="nav_logo"><p class="logo_text">Uzcoin</p></a>
@@ -30,7 +40,7 @@
                             <li><a href="../#comments" class="nav_link">Comments</a></li>
                         </ul>
                         <div class="nav_functions">
-                            <!-- <a href="#" class="btn nav_button">Sign up</a> -->
+                            <a href="#" class="btn nav_button" style="display: <?= !$isMyProfile ? 'block' : 'none'?>;">Sign up</a>
                             <div class="profile_nav">
                                 <div class="profile_image">
                                     <h5 class="profile_name">Suyunbek</h5>
@@ -55,8 +65,8 @@
                         </div>
                     </div>
                 </div>
-            </nav>
-
+            </nav> -->
+            <?include_once('nav.php');?>
             <div class="delete_alert">
                 <p class="delete_alert_text">Do you really want to delete this comment</p>
                 <a href="#" class="btn delete_alert_btn">Yes</a>
@@ -66,14 +76,14 @@
                 <div class="container">
                     <div class="profile_panel">
                         <div class="user_avatar">
-                            <img src="../img/icon.jpg" alt="" class="user_img">
+                            <img src="<?= $isMyProfile ? $myProfile['avatar'] : $user['avatar']?>" alt="" class="user_img">
                             <div class="user_avatar_content">
-                                <a href="./change-avatar.html" class="user_avatar_change"><span><i class="fas fa-edit"></i></span>Change photo</a>
+                                <a href="./?route=change-avatar&id=<?= $_SESSION['id'];?>" class="user_avatar_change"><span><i class="fas fa-edit"></i></span>Change photo</a>
                             </div>
                         </div>
-                        <h2 class="user_title">Suyunbek</h2>
-                        <p class="username">@MrUzcoin</p>
-                        <p class="user_bio">Lorem ipsum dolor sit amet consectetur adipisicing elit. Blanditiis, ab.</p>
+                        <h2 class="user_title"><?= $isMyProfile ? $myProfile['name'] : $user['name']?></h2>
+                        <p class="username"><?= $isMyProfile ? $myProfile['username'] : $user['username']?></p>
+                        <p class="user_bio"><?= $isMyProfile ? $myProfile['bio'] : $user['bio']?></p>
                         <div class="social_media">
                             <a href="https://t.me/MrUzcoin" class="messangers">
                                 <i class="fab fa-telegram"></i>
@@ -91,48 +101,50 @@
                     </div>
                     <div class="profile_main">
                         <div class="about_profile">
-                            <h2 class="about_profile_title"><i class="fas fa-info-circle"></i> About your Profile</h2>
+                            <h2 class="about_profile_title"><i class="fas fa-info-circle"></i> <?= $isMyProfile ? 'Your' : $user['name'] . "'s"?> Profile</h2>
                             <div class="user_info">
                                 <div class="user_info_item">
                                     <p class="user_info_title">Name</p>
-                                    <span class="user_info_text">Suyunbek</span>
+                                    <span class="user_info_text"><?= $isMyProfile ? $myProfile['name'] : $user['name']?></span>
                                 </div>
                                 <div class="user_info_item">
                                     <p class="user_info_title">Username</p>
-                                    <span class="user_info_text">@MrUzcoin</span>
+                                    <span class="user_info_text"><?= $isMyProfile ? $myProfile['username'] : $user['username']?></span>
                                 </div>
+                                <?if($isMyProfile):?>
                                 <div class="user_info_item">
                                     <p class="user_info_title">Email</p>
-                                    <span class="user_info_text">Uzcointg@gmail.com</span>
+                                    <span class="user_info_text"><?= $myProfile['email']?></span>
                                 </div>
+                                <?endif;?>
                                 <div class="user_info_item">
                                     <p class="user_info_title">Phone number</p>
-                                    <span class="user_info_text">+998 90 622 5022</span>
+                                    <span class="user_info_text">+<?= $isMyProfile ? $myProfile['phone'] : $user['phone']?></span>
                                 </div>
                                 <div class="user_info_item user_info_bio">
                                     <p class="user_info_title">Bio</p>
-                                    <span class="user_info_text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium, quasi?</span>
+                                    <span class="user_info_text"><?= $isMyProfile ? $myProfile['bio'] : $user['bio']?></span>
                                 </div>
                             </div>
                         </div>
-                        <div class="edit_profile" style="display: block;">
+                        <div class="edit_profile" style="display: <?= $isMyProfile ? 'block' : 'none'?>;">
                             <h2 class="edit_profile_title"><i class="fas fa-user-edit"></i> Edit your Profile</h2>
-                            <form action="" method="post" class="profile_form">
+                            <form action="./components/edit-profile.php" method="post" class="profile_form">
                                 <div class="form_items">
                                     <label for="name" class="form_label">Your name</label>
-                                    <input type="text" name="name" class="form_input" placeholder="name..." required>
+                                    <input type="text" name="name" class="form_input" value="<?= $myProfile['name']?>" placeholder="name..." required>
                                 </div>
                                 <div class="form_items">
                                     <label for="username" class="form_label">Your Username</label>
-                                    <input type="text" name="username" class="form_input" placeholder="username..." required>
+                                    <input type="text" name="username" class="form_input" value="<?= $myProfile['username']?>" placeholder="username..." required>
                                 </div>
                                 <div class="form_items" class="form_label">
                                     <label for="email" class="form_label">Your Email</label>
-                                    <input type="email" name="email" class="form_input" placeholder="email..." required>
+                                    <input type="email" name="email" class="form_input" value="<?= $myProfile['email']?>" placeholder="email..." required>
                                 </div>
                                 <div class="form_items" class="form_label">
                                     <label for="phone" class="form_label">Your Phone number</label>
-                                    <input type="number" name="phone" class="form_input" placeholder="phone number..." required>
+                                    <input type="number" name="phone" class="form_input" value="<?= $myProfile['phone']?>" placeholder="phone number..." required>
                                 </div>
                                 <div class="form_items" class="form_label">
                                     <label for="password" class="form_label">Your Password</label>
@@ -141,8 +153,9 @@
                                 </div>
                                 <div class="form_items" class="form_label">
                                     <label for="bio" class="form_label">Your Bio</label>
-                                    <input type="text" name="bio" class="form_input" placeholder="bio...">
+                                    <input type="text" name="bio" class="form_input" value="<?= $myProfile['bio']?>" placeholder="bio...">
                                 </div>
+                                <input type="hidden" name="id" value="<?= $_SESSION['id']?>">
                                 <button type="submit" class="btn submit_btn" title="Save changes">Save <i class="fas fa-save"></i></button>
                                 <button type="reset" class="btn reset_btn" title="Reset inputs">Reset All</button>
                             </form>
@@ -167,7 +180,7 @@
                                                         <button class="btn edit_comment_button cancel_comment_btn" type="button">Cancel</button>
                                                     </div>
                                                 </form>
-                                                <div class="comment_functions">
+                                                <div class="comment_functions" style="display: <?= $isMyProfile ? 'flex' : 'none'?>;">
                                                     <a href="#" class="comment_function" id="edit" title="Edit comment"><i class="fas fa-pen"></i></a href="#">
                                                     <a href="#" class="comment_function" id="delete" title="Delete comment"><i class="fas fa-trash"></i></a href="#">
                                                 </div>
@@ -255,7 +268,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="profile_write_comments">
+                            <div class="profile_write_comments" style="display: <?= $isMyProfile ? 'block' : 'none'?>;">
                                 <form action="" method="post" class="write_comments_form">
                                     <textarea type="text" name="comment" class="comment_write" title="Please write comment here" placeholder="Your message..." required></textarea>
                                     <button class="comment_send_btn" type="submit"><i class="fas fa-paper-plane"></i></i></button>
@@ -267,7 +280,10 @@
             </div>
         </div>
         <script src="../js/aos.js"></script>
-        <script src="../js/profile.js"></script>
+        <script src="../js/profile.js?v=<?= time();?>"></script>
     </main>
 </body>
 </html>
+<?
+endif;
+?>

@@ -1,3 +1,9 @@
+<?
+include_once('./components/db.php');
+$isMyProfile = $_SESSION['id'] ? true : false;
+if($isMyProfile): header("Location: ../?route=profile");
+else :
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,7 +12,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login Register</title>
     <link rel="stylesheet" href="../styles/all.min.css">
-    <link rel="stylesheet" href="../styles/log-reg.css">
+    <link rel="stylesheet" href="../styles/log-reg.css?v=<?= time();?>">
     <link rel="icon" href="../img/icon.jpg">
 </head>
 <body>
@@ -16,7 +22,7 @@
             <div class="forms">
                 <div class="sign__blog">
 
-                    <form method="post" action="" class="signin">
+                    <form method="post" action="../components/user-login.php" class="signin">
 
                         <div class="profile__img__blog">
                             <img src="../img/profile.svg" alt="" class="profile">
@@ -35,7 +41,7 @@
 
                     </form>
 
-                    <form method="post" action="" class="register">
+                    <form method="post" action="../components/user-reg.php" enctype="multipart/form-data" class="register">
 
                         <h2 class="form_title">Register</h1>
                         <div class="form_steps">
@@ -129,7 +135,7 @@
                                                 <div class="formUploader__cancel"><i class="fas fa-times"></i></div>
                                                 <div class="formUploader__fileName"><p>File name</p></div>
                                             </div>
-                                            <input name="photo" type="file" class="imgUploader" accept=".jpg, .jpeg, .png" name="avatar" tabindex="-1" hidden>
+                                            <input name="avatar" type="file" class="imgUploader" accept=".jpg, .jpeg, .png" name="avatar" tabindex="-1" hidden>
                                         </div>
                                     </div>
                                     <div class="register_buttons">
@@ -175,7 +181,8 @@
 
         </div>
     </main>
-    <script src="../js/log-reg.js"></script>
+    <script src="../js/log-reg.js?v=<?= time();?>"></script>
 
 </body>
 </html>
+<?endif;?>

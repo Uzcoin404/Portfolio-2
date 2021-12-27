@@ -40,6 +40,10 @@ if (getCookie('theme') == 'day') {
     main.classList.remove('day');
     main.classList.add('night');
 }
+document.querySelector('.user_img').style.height = document.querySelector('.user_img').offsetWidth + 'px';
+window.addEventListener('resize', function(){
+    document.querySelector('.user_img').style.height = document.querySelector('.user_img').offsetWidth + 'px';
+});
 
 const inputs = document.querySelectorAll('.form_input');
 const password = document.querySelector('.form_password');
