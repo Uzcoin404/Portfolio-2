@@ -1,3 +1,9 @@
+<?
+include_once('./components/db.php');
+$isMyProfile = $_SESSION['id'] ? true : false;
+if(!$isMyProfile): header("Location: ../?route=main&nologin=true");
+else :
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,13 +12,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Change my Photo</title>
     <link rel="stylesheet" href="../styles/all.min.css">
-    <link rel="stylesheet" href="../styles/style.css">
-    <link rel="stylesheet" href="../styles/media.css">
+    <link rel="stylesheet" href="../styles/style.css?v=<?= time();?>">
+    <link rel="stylesheet" href="../styles/media.css?v=<?= time();?>">
     <link rel="icon" href="../img/icon.jpg">
 </head>
 <body>
     
-    <form action="" class="photo_form" method="post" enctype="multipart/form-data">
+    <form action="../components/edit-avatar.php" class="photo_form" method="post" enctype="multipart/form-data">
         <div class="form__imgUploader">
             <div class="form__wrapper">
                 <div class="form__image">
@@ -25,15 +31,17 @@
                 <div class="formUploader__cancel"><i class="fas fa-times"></i></div>
                 <div class="formUploader__fileName"><p>file name</p></div>
             </div>
-            <input type="file" class="imgUploader" accept=".jpg, .jpeg, .png" name="photo" hidden>
+            <input type="file" class="imgUploader" accept=".jpg, .jpeg, .png" name="avatar" hidden>
+            <input type="text" name="id" value="<?= $_GET['id']?>" hidden>
             <button type="button" class="customBtn">Choose a photo</button>
             <div class="form__buttons">
-                <button class="form__btn skipBtn" type="button"><a href="./profile.html">Cancel</a></button>
+                <button class="form__btn skipBtn" type="button"><a href="./route=profile">Cancel</a></button>
                 <button class="form__btn doneBtn" type="submit" disabled>Done</button>
             </div>
         </div>
     </div>
-    <script src="../js/img-uploader.js"></script>
+    <script src="../js/img-uploader.js?v=<?= time();?>"></script>
 
 </body>
 </html>
+<?endif;?>

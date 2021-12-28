@@ -1185,6 +1185,9 @@ nav.sticky .menu_btn_span, nav.active .menu_btn_span, nav.sticky .menu_btn::befo
     font-size: 14px;
     color: var(--main_color);
 }
+.comment_name{
+    padding-right: 30px;
+}
 .load_more{
     background: var(--main_bl);
     margin-top: 10px;
@@ -1238,22 +1241,24 @@ nav.sticky .menu_btn_span, nav.active .menu_btn_span, nav.sticky .menu_btn::befo
 
 /*                                             Profile styling                                                 */
 
+.profile_body{
+    overflow: hidden;
+}
 .profile{
     width: 100vw;
     min-height: 100vh;
     background: linear-gradient(-45deg, #ff335c, #50fc9d, #40f2ff);
 }
-.profile .container{
-    padding: 0;
-}
 .profile_info{
     padding-top: 90px;
     padding-bottom: 15px;
+    overflow: hidden;
 }
 .profile_info .container{
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
     grid-gap: 15px;
+    padding: 0;
 }
 .profile_comments, .profile_main, .profile_panel{
     min-height: 640px;
@@ -1340,6 +1345,9 @@ nav.sticky .menu_btn_span, nav.active .menu_btn_span, nav.sticky .menu_btn::befo
     font-size: 24px;
     padding-bottom: 20px;
 }
+.about_profile_title i, .edit_profile_title i, .profile_comments_title i{
+    color: var(--main_bl);
+}
 .user_info{
     width: 100%;
     display: grid;
@@ -1423,6 +1431,7 @@ nav.sticky .menu_btn_span, nav.active .menu_btn_span, nav.sticky .menu_btn::befo
 .profile_comments_content{
     overflow-y: auto;
     max-height: 640px;
+    border-radius: 25px;
 }
 .profile_comments_content::-webkit-scrollbar{
     width: 7px;
@@ -1445,6 +1454,10 @@ nav.sticky .menu_btn_span, nav.active .menu_btn_span, nav.sticky .menu_btn::befo
 }
 .comment_edit_form{
     width: 100%;
+}
+.profile .comment_img_blog{
+    width: 55px;
+    height: 55px;
 }
 .profile .comment_functions{
     width: 100%;
