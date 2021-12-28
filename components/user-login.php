@@ -13,6 +13,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         header("Location: ../?route=profile");
     };
 } else{
+    unset($_SESSION['id']);
     unset($_SESSION['username']);
     header("location: ../?route=main");
 }

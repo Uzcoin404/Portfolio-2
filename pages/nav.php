@@ -12,11 +12,11 @@
                             <li><a href="<?= $isProfile ? '../' : ''?>#comments" class="nav_link">Comments</a></li>
                         </ul>
                         <div class="nav_functions">
-                            <a href="./?route=login-register" class="btn nav_button" style="display: <?= !$_SESSION['id'] ? 'block' : 'none'?>;">Sign up</a>
+                            <a href="./?route=login-register" class="btn nav_button" style="display: <?= !$_SESSION['id'] ? 'block' : 'none'?>;">Sign in</a>
                             <div class="profile_nav" style="display: <?= $_SESSION['id'] ? 'block' : 'none'?>;">
                                 <div class="profile_image">
-                                    <h5 class="profile_name">Suyunbek</h5>
-                                    <img src="<?= $_SESSION['id'] ? $myProfile['avatar'] : ''?>" alt="" class="profile_img">
+                                    <h5 class="profile_name"><?= $myProfile['name']?></h5>
+                                    <img src="<?= $myProfile['avatar']?>" alt="" class="profile_img">
                                 </div>
                                 <div class="profile_content">
                                     <span><a href="./?route=profile" class="profile_text">My Profile</a></span>

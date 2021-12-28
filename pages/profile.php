@@ -2,13 +2,18 @@
     include_once('./components/db.php');
     $getId = $_GET['id'];
     $isMyProfile = $_SESSION['username'] && !$getId ? true : false;
+    if(!$isMyProfile && !$getId): header("Location: ../?route=main&nologin=true");
+    else :
     $myProfile = getUser($_SESSION['id']);
     $user = getUser($getId);
     $isProfile = $_GET['route'] == 'profile';
-    $comments = getComments();
-    $sizeComments = count($comments);
-    if(!$isMyProfile && !$getId): header("Location: ../?route=main&nologin=true");
-    else :
+    $myComments = getMyComments($myProfile['username']);
+    $userComments = getMyComments($user['username']);
+    $commentDel = $_GET['del'];
+    if ($commentDel) {
+        deleteComment($commentDel);
+        header("Location: ./?route=profile");
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -28,46 +33,6 @@
     <main class="main day profile_body">
         <div class="profile">
 
-            <!-- <nav class="nav">
-                <div class="container_glass">
-                    <div class="nav_blog">
-                        <a href="/" class="nav_logo"><p class="logo_text">Uzcoin</p></a>
-                        <ul class="nav_list">
-                            <li><a href="../#home" class="nav_link">Home</a></li>
-                            <li><a href="../#about" class="nav_link">About</a></li>
-                            <li><a href="../#skills" class="nav_link">Skills</a></li>
-                            <li><a href="../#projects" class="nav_link">Projects</a></li>
-                            <li><a href="../#service" class="nav_link">Service</a></li>
-                            <li><a href="../#contact" class="nav_link">Contact</a></li>
-                            <li><a href="../#comments" class="nav_link">Comments</a></li>
-                        </ul>
-                        <div class="nav_functions">
-                            <a href="#" class="btn nav_button" style="display: <?= !$isMyProfile ? 'block' : 'none'?>;">Sign up</a>
-                            <div class="profile_nav">
-                                <div class="profile_image">
-                                    <h5 class="profile_name">Suyunbek</h5>
-                                    <img src="../img/icon.jpg" alt="" class="profile_img">
-                                </div>
-                                <div class="profile_content">
-                                    <span><a href="profile.html" class="profile_text">Profile info</a></span>
-                                    <span><p class="log_out">Log out</p></span>
-                                </div>
-                            </div>
-                            <div class="day_night">
-                                <div class="day_night_indicator"><i class="far fa-sun"></i></div>
-                                <div class="day_night_content">
-                                    <span class="day_icon"><i class="far fa-sun"></i>Day</span>
-                                    <span class="night_icon"><i class="far fa-moon"></i>Night</span>    
-                                </div>
-                            </div>
-                        </div>
-                        <div class="menu_btn_blog">
-                            <div class="menu_btn"></div>
-                            <div class="menu_btn_span"></div>
-                        </div>
-                    </div>
-                </div>
-            </nav> -->
             <?include_once('nav.php');?>
             <div class="delete_alert">
                 <p class="delete_alert_text">Do you really want to delete this comment</p>
@@ -117,6 +82,10 @@
                                 <div class="user_info_item">
                                     <p class="user_info_title">Email</p>
                                     <span class="user_info_text"><?= $myProfile['email']?></span>
+                                </div>
+                                <div class="user_info_item">
+                                    <p class="user_info_title">Theme</p>
+                                    <span class="user_info_text"><?= $_COOKIE['theme'] ? $_COOKIE['theme'] : 'day'?></span>
                                 </div>
                                 <?endif;?>
                                 <div class="user_info_item">
@@ -168,16 +137,52 @@
                         <div class="profile_comments_main">
                             <div class="profile_user_comments">
                                 <div class="profile_comments_content">
-                                <? for ($i=$sizeComments; $i > 0; $i--): ?>
-                                    <div class="comment">
+                                <? if($isMyProfile): 
+                                    if(count($myComments) > 0):?>
+                                    <? for ($i=count($myComments)-1; $i >= 0; $i--): ?>
+                                    <div class="comment" data-aos="flip-right" data-aos-duration="1000" data-aos-delay="300">
                                         <div class="comment_img_blog">
-                                            <a href="#"><img src="../img/about_img.jpeg" alt="" class="comment_img" title="View profile"></a>
+                                            <a href="./?route=profile"><img src="<?= $myProfile['avatar']?>" alt="" class="comment_img" title="View profile"></a>
                                         </div>
                                         <div class="comment_body">
                                             <div class="comment_item">
-                                                <p class="comment_text"><?= $comments[$i]['comment']?></p>
-                                                <form action="" method="post" class="comment_edit_form" style="display: none;">
-                                                    <textarea name="comment" class="comment_area" placeholder="Message" required></textarea>
+                                                <p class="comment_text"><?= $myComments[$i]['comment']?></p>
+                                                <form action="../components/edit-comment.php" method="post" class="comment_edit_form" style="display: none;">
+                                                    <textarea name="comment" class="comment_area" value="<?= $myComments[$i]['comment']?>" placeholder="Message" required></textarea>
+                                                    <input type="hidden" name="id" value="<?= $myComments[$i]['id']?>">
+                                                    <input type="hidden" name="username" value="<?= $myComments[$i]['username']?>">
+                                                    <div class="edit_comment_buttons">
+                                                        <button class="btn edit_comment_button edit_comment_btn" type="submit">Save</button>
+                                                        <button class="btn edit_comment_button cancel_comment_btn" type="button">Cancel</button>
+                                                    </div>
+                                                </form>
+                                                <div class="comment_functions" style="display: <?= $isMyProfile ? 'flex' : 'none'?>;">
+                                                    <a href="#" class="comment_function" id="edit" title="Edit comment"><i class="fas fa-pen"></i></a href="#">
+                                                    <a href="./?route=profile&del=<?= $myComments[$i]['id']?>" class="comment_function" id="delete" title="Delete comment"><i class="fas fa-trash"></i></a href="#">
+                                                </div>
+                                            </div>
+                                            <div class="comment_footer">
+                                                <a href="./?route=profile" class="comment_name" title="View profile"><?= $myComments[$i]['username']?></a>
+                                                <p class="comment_date" title="Comment created Date"><?= $myComments[$i]['date']?></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <?endfor;
+                                    endif;
+                                else :
+                                    if(count($userComments) > 0): ?>
+                                    <? for ($i=count($userComments)-1; $i >= 0; $i--): ?>
+                                    <div class="comment" data-aos="flip-right" data-aos-duration="1000" data-aos-delay="300">
+                                        <div class="comment_img_blog">
+                                            <a href="./?route=profile&id=<?= $user['id']?>"><img src="<?= $myProfile['avatar']?>" alt="" class="comment_img" title="View profile"></a>
+                                        </div>
+                                        <div class="comment_body">
+                                            <div class="comment_item">
+                                                <p class="comment_text"><?= $userComments[$i]['comment']?></p>
+                                                <form action="../components/edit-comment.php" method="post" class="comment_edit_form" style="display: none;">
+                                                    <textarea name="comment" class="comment_area" value="<?= $userComments[$i]['comment']?>" placeholder="Message" required></textarea>
+                                                    <input type="hidden" name="id" value="<?= $userComments[$i]['id']?>">
+                                                    <input type="hidden" name="username" value="<?= $userComments[$i]['username']?>">
                                                     <div class="edit_comment_buttons">
                                                         <button class="btn edit_comment_button edit_comment_btn" type="submit">Save</button>
                                                         <button class="btn edit_comment_button cancel_comment_btn" type="button">Cancel</button>
@@ -189,37 +194,14 @@
                                                 </div>
                                             </div>
                                             <div class="comment_footer">
-                                                <a href="#" class="comment_name" title="View profile">Suyunbek</a>
-                                                <p class="comment_date" title="Comment created Date">2021-10-26 09:42</p>
+                                                <a href="./?route=profile&id=<?= $user['id']?>" class="comment_name" title="View profile"><?= $userComments[$i]['username']?></a>
+                                                <p class="comment_date" title="Comment created Date"><?= $userComments[$i]['date']?></p>
                                             </div>
                                         </div>
                                     </div>
-                                <?endfor;?>
-                                    <div class="comment" data-aos="flip-right" data-aos-duration="1000" data-aos-delay="300">
-                                        <div class="comment_img_blog">
-                                            <a href="#"><img src="../img/about_img.jpeg" alt="" class="comment_img" title="View profile"></a>
-                                        </div>
-                                        <div class="comment_body">
-                                            <div class="comment_item">
-                                                <p class="comment_text">Welcome back! You can write feedback (Coming soon), For this Scroll up page | Xush Kelibsiz! Bu kommentariya tizimi. Bu yerda o'z fikr mulohazangizni yozasiz va boshqalar fikrini ham ko'ra olasiz (Tez orada) </p>
-                                                <form action="" method="post" class="comment_edit_form" style="display: none;">
-                                                    <textarea name="comment" class="comment_area" maxlength="300" placeholder="Message" required></textarea>
-                                                    <div class="edit_comment_buttons">
-                                                        <button class="btn edit_comment_button edit_comment_btn" type="submit">Save</button>
-                                                        <button class="btn edit_comment_button cancel_comment_btn" type="button">Cancel</button>
-                                                    </div>
-                                                </form>
-                                                <div class="comment_functions">
-                                                    <a href="#" class="comment_function" id="edit" title="Edit comment"><i class="fas fa-pen"></i></a href="#">
-                                                    <a href="#" class="comment_function" id="delete" title="Delete comment"><i class="fas fa-trash"></i></a href="#">
-                                                </div>
-                                            </div>
-                                            <div class="comment_footer">
-                                                <a href="#" class="comment_name" title="View profile">Suyunbek</a>
-                                                <p class="comment_date" title="Comment created Date">2021-10-26 09:42</p>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    <?endfor;
+                                    endif;
+                                endif;?>
                                 </div>
                             </div>
                             <div class="profile_write_comments" style="display: <?= $isMyProfile ? 'block' : 'none'?>;">
@@ -240,5 +222,4 @@
 </body>
 </html>
 <?
-endif;
-?>
+endif;?>

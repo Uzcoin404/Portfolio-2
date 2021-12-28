@@ -1342,6 +1342,9 @@ nav.sticky .menu_btn_span, nav.active .menu_btn_span, nav.sticky .menu_btn::befo
     font-size: 24px;
     padding-bottom: 20px;
 }
+.about_profile_title i, .edit_profile_title i, .profile_comments_title i{
+    color: var(--main_bl);
+}
 .user_info{
     width: 100%;
     display: grid;
@@ -1448,6 +1451,10 @@ nav.sticky .menu_btn_span, nav.active .menu_btn_span, nav.sticky .menu_btn::befo
 }
 .comment_edit_form{
     width: 100%;
+}
+.profile .comment_img_blog{
+    width: 55px;
+    height: 55px;
 }
 .profile .comment_functions{
     width: 100%;

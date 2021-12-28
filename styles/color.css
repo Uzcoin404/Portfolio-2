@@ -28,21 +28,24 @@ main.night .loader{
     background: #212529;
 }
 main.night .container_glass, main.night .about_box, main.night .profile_panel, .main.night .about_profile, main.night .profile_comments, .main.night .edit_profile{
-    background: rgba(0, 0, 0, 0.600);
+    background: rgba(0, 0, 0, 0.630);
 }
-main.night nav a, main.night .tooltiptext, main.night .title, main.night .header_info span, .main.night .profile_name, main.night .about_profile_title, main.night .edit_profile_title, main.night .profile_comments_title, main.night .username{
+main.night .profile_content, .main.night .delete_alert {
+    background: rgb(0, 0, 0, 0.8);
+}
+main.night nav a, main.night .tooltiptext, main.night .title, main.night .header_info span, .main.night .profile_name, main.night .about_profile_title, main.night .edit_profile_title, main.night .profile_comments_title, main.night .username, main.night .profile_content, main.night .profile_text{
     color: #eee;
 }
 main.night .nav_logo, main.night .header_text, main.night .header_info h3, main.night .day_night_content, main.night .content_titles, main.night .contact_box_title, main.night .comments_label, main.night .profile_name, main.night .user_info_title, main.night .form_label{
     color: #ccc;
 }
-main.night .about_text, main.night .skills_about_text, main.night .contact_content_text, main.night .comments_text, main.night .contact_box_link, main.night .user_bio, main.night .user_info_text{
+main.night .about_text, main.night .skills_about_text, main.night .contact_content_text, main.night .comments_text, main.night .contact_box_link, main.night .user_bio, main.night .user_info_text, .main.night .delete_alert{
     color: #bbb;
 }
-main.night .comment, main.night .social_media .tooltiptext, main.night .profile_content, .main.night .form_input{
+main.night .comment, main.night .social_media .tooltiptext, .main.night .form_input{
     background: #d6d6d6;
 }
-.main.night .form_input::placeholder, main.night .profile_content, main.night .tooltiptext, main.night .profile_text {
+.main.night .form_input::placeholder, main.night .tooltiptext {
     color: #222;
 }
 main.night .social_media .tooltiptext::before{

@@ -79,12 +79,22 @@ function editAvatar($id, $imgPath){
     }
     return $result;
 }
-function editProfile($id, $name, $username, $email, $phone, $password, $bio){
+function editProfile($id, $name, $username, $email, $phone, $password, $bio, $avatar){
     $password = password_hash($password , PASSWORD_DEFAULT);
     $pdo = pdo();
-    $query = "UPDATE users SET name='$name',username='$username',email='$email',phone='$phone',password='$password',bio='$bio' WHERE id = (?)";
+    $query = "UPDATE users SET name='$name',username='$username',email='$email',phone='$phone',password='$password',bio='$bio',avatar='$avatar' WHERE id = (?)";
     $driver = $pdo->prepare($query);
     $result = $driver->execute([$id]);
+    if ($driver->errorInfo()[0] != '00000') {
+        var_dump($driver->errorInfo());
+    }
+    return $result;
+}
+function setComments($username, $comment, $date){
+    $pdo = pdo();
+    $query = "INSERT INTO comments (`username`, `comment`, `date`) VALUES (?,?,?)";
+    $driver = $pdo->prepare($query);
+    $result = $driver->execute([$username,$comment,$date]);
     if ($driver->errorInfo()[0] != '00000') {
         var_dump($driver->errorInfo());
     }
@@ -98,11 +108,42 @@ function getComments(){
     $comments = $driver->fetchAll(PDO::FETCH_ASSOC);
     return $comments;
 }
-function setComments($username, $comment, $date){
+function getMyComments($username){
     $pdo = pdo();
-    $query = "INSERT INTO comments (`username`, `comment`, `date`) VALUES (?,?,?)";
+    $query = "SELECT * FROM comments WHERE username=(?)";
     $driver = $pdo->prepare($query);
-    $result = $driver->execute([$username,$comment,$date]);
+    $result = $driver->execute([$username]);
+    $comments = $driver->fetchAll(PDO::FETCH_ASSOC);
+    if ($driver->errorInfo()[0] != '00000') {
+        var_dump($driver->errorInfo());
+    }
+    return $comments;
+}
+function editComment($id, $username, $comment, $date){
+    $pdo = pdo();
+    $query = "UPDATE comments SET username='$username',comment='$comment',date='$date' WHERE id = (?)";
+    $driver = $pdo->prepare($query);
+    $result = $driver->execute([$id]);
+    if ($driver->errorInfo()[0] != '00000') {
+        var_dump($driver->errorInfo());
+    }
+    return $result;
+}
+function editUsername($oldUsername, $username){
+    $pdo = pdo();
+    $query = "UPDATE comments SET username='$username' WHERE username = (?)";
+    $driver = $pdo->prepare($query);
+    $result = $driver->execute([$oldUsername]);
+    if ($driver->errorInfo()[0] != '00000') {
+        var_dump($driver->errorInfo());
+    }
+    return $result;
+}
+function deleteComment($id){
+    $pdo = pdo();
+    $query = "DELETE FROM comments WHERE id = (?)";
+    $driver = $pdo->prepare($query);
+    $result = $driver->execute([$id]);
     if ($driver->errorInfo()[0] != '00000') {
         var_dump($driver->errorInfo());
     }

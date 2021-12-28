@@ -18,6 +18,7 @@
         }
         editAvatar($id, $imgPath);
         move_uploaded_file($_FILES['avatar']['tmp_name'], $imgPath);
+        clearstatcache();
         header('Location: ../?route=profile');
     }
     ob_end_flush();
