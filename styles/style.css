@@ -1185,6 +1185,9 @@ nav.sticky .menu_btn_span, nav.active .menu_btn_span, nav.sticky .menu_btn::befo
     font-size: 14px;
     color: var(--main_color);
 }
+.comment_name{
+    padding-right: 30px;
+}
 .load_more{
     background: var(--main_bl);
     margin-top: 10px;

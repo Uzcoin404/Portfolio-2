@@ -13,9 +13,9 @@ $sizeComments = count($comments);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portfolio</title>
     <link rel="stylesheet" href="styles/all.min.css">
-    <link rel="stylesheet" href="styles/color.css">
-    <link rel="stylesheet" href="styles/style.css">
-    <link rel="stylesheet" href="styles/media.css">
+    <link rel="stylesheet" href="styles/color.css?v=<?= time();?>">
+    <link rel="stylesheet" href="styles/style.css?v=<?= time();?>">
+    <link rel="stylesheet" href="styles/media.css?v=<?= time();?>">
     <link rel="icon" href="img/icon.jpg">
 </head>
 <body>
@@ -436,16 +436,19 @@ $sizeComments = count($comments);
                 <div class="container_glass">
                     <h2 class="title comments_title">What <span>my clients</span> Say ?</h2>
                     <div class="comments_content">
-                    <? for ($i=$sizeComments-1; $i > 0; $i--): ?>
-                        <div class="comment">
+                    <?if(count($comments) > 0):?>
+                        <? for ($i=count($comments)-1; $i >= 0; $i--): ?>
+                        <div class="comment" data-aos="flip-right" data-aos-duration="1000" data-aos-delay="300">
                             <div class="comment_img_blog">
-                                <a href="#"><img src="../img/about_img.jpeg" alt="" class="comment_img" title="View profile"></a>
+                                <a href="./?route=profile"><img src="<?= $myProfile['avatar']?>" alt="" class="comment_img" title="View profile"></a>
                             </div>
                             <div class="comment_body">
                                 <div class="comment_item">
                                     <p class="comment_text"><?= $comments[$i]['comment']?></p>
-                                    <form action="" method="post" class="comment_edit_form" style="display: none;">
-                                        <textarea name="comment" class="comment_area" placeholder="Message" required></textarea>
+                                    <form action="../components/edit-comment.php" method="post" class="comment_edit_form" style="display: none;">
+                                        <textarea name="comment" class="comment_area" value="<?= $comments[$i]['comment']?>" placeholder="Message" required></textarea>
+                                        <input type="hidden" name="id" value="<?= $comments[$i]['id']?>">
+                                        <input type="hidden" name="username" value="<?= $comments[$i]['username']?>">
                                         <div class="edit_comment_buttons">
                                             <button class="btn edit_comment_button edit_comment_btn" type="submit">Save</button>
                                             <button class="btn edit_comment_button cancel_comment_btn" type="button">Cancel</button>
@@ -453,16 +456,17 @@ $sizeComments = count($comments);
                                     </form>
                                     <div class="comment_functions" style="display: <?= $isMyProfile ? 'flex' : 'none'?>;">
                                         <a href="#" class="comment_function" id="edit" title="Edit comment"><i class="fas fa-pen"></i></a href="#">
-                                        <a href="#" class="comment_function" id="delete" title="Delete comment"><i class="fas fa-trash"></i></a href="#">
+                                        <a href="./?route=profile&del=<?= $comments[$i]['id']?>" class="comment_function" id="delete" title="Delete comment"><i class="fas fa-trash"></i></a href="#">
                                     </div>
                                 </div>
                                 <div class="comment_footer">
-                                    <a href="#" class="comment_name" title="View profile">Suyunbek</a>
-                                    <p class="comment_date" title="Comment created Date">2021-10-26 09:42</p>
+                                    <a href="./?route=profile" class="comment_name" title="View profile"><?= $comments[$i]['username']?></a>
+                                    <p class="comment_date" title="Comment created Date"><?= $comments[$i]['date']?></p>
                                 </div>
                             </div>
                         </div>
-                    <?endfor;?>
+                        <?endfor;
+                    endif;?>
                     </div>
                     <a href="#" class="btn load_more" data-aos="fade-down" data-aos-duration="1000" data-aos-delay="400">Load more</a>
                 </div>
@@ -526,7 +530,7 @@ $sizeComments = count($comments);
     <script src="js/glide.min.js"></script>
     <script src="js/jquery.js"></script>
     <script src="js/aos.js"></script>
-    <script src="js/script.js"></script>
+    <script src="js/script.js?v=<?= time();?>"></script>
 
 </body>
 </html>
