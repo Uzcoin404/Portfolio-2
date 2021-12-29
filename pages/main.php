@@ -53,50 +53,7 @@ $sizeComments = count($comments);
         </div>
 
         <header class="header" id="home">
-<<<<<<< HEAD:index.html
-            <nav class="nav">
-                <div class="container_glass">
-                    <div class="nav_blog">
-                        <a href="/" class="nav_logo"><p class="logo_text">Uzcoin</p></a>
-                        <ul class="nav_list">
-                            <li><a href="#home" class="nav_link">Home</a></li>
-                            <li><a href="#about" class="nav_link">About</a></li>
-                            <li><a href="#skills" class="nav_link">Skills</a></li>
-                            <li><a href="#projects" class="nav_link">Projects</a></li>
-                            <li><a href="#service" class="nav_link">Service</a></li>
-                            <li><a href="#contact" class="nav_link">Contact</a></li>
-                            <li><a href="#comments" class="nav_link">Comments</a></li>
-                        </ul>
-                        <div class="nav_functions">
-                            <a href="#" class="btn nav_button">Sign up</a>
-                            <div class="profile_nav">
-                                <div class="profile_image">
-                                    <h5 class="profile_name">Suyunbek</h5>
-                                    <img src="../img/icon.jpg" alt="" class="profile_img">
-                                </div>
-                                <div class="profile_content">
-                                    <span><a href="pages/profile.html" class="profile_text">Profile info</a></span>
-                                    <span><p class="log_out">Log out</p></span>
-                                </div>
-                            </div>
-                            <div class="day_night">
-                                <div class="day_night_indicator"><i class="far fa-sun"></i></div>
-                                <div class="day_night_content">
-                                    <span class="day_icon"><i class="far fa-sun"></i>Day</span>
-                                    <span class="night_icon"><i class="far fa-moon"></i>Night</span>    
-                                </div>
-                            </div>
-                        </div>
-                        <div class="menu_btn_blog">
-                            <div class="menu_btn"></div>
-                            <div class="menu_btn_span"></div>
-                        </div>
-                    </div>
-                </div>
-            </nav>
-=======
             <?include_once('nav.php');?>
->>>>>>> 51a97eae47c410741b7f6de5a2da1974d607a768:pages/main.php
             <div class="header_blog">
                 <div class="container_glass">
                     <div class="header_content">
