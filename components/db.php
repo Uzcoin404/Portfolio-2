@@ -90,11 +90,11 @@ function editProfile($id, $name, $username, $email, $phone, $password, $bio, $av
     }
     return $result;
 }
-function setComments($username, $comment, $date){
+function setComments($username, $userID, $comment, $avatar, $date){
     $pdo = pdo();
-    $query = "INSERT INTO comments (`username`, `comment`, `date`) VALUES (?,?,?)";
+    $query = "INSERT INTO comments (`username`, `userID`, comment`, `avatar`, `date`) VALUES (?,?,?,?,?)";
     $driver = $pdo->prepare($query);
-    $result = $driver->execute([$username,$comment,$date]);
+    $result = $driver->execute([$username, $userID, $comment, $avatar, $date]);
     if ($driver->errorInfo()[0] != '00000') {
         var_dump($driver->errorInfo());
     }

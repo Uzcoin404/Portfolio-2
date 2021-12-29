@@ -1,32 +1,57 @@
-<? ?>
+<?
+    include_once('./components/db.php');
+    $getId = $_GET['id'];
+    $isMyProfile = $_SESSION['username'] && !$getId ? true : false;
+    $myProfile = getUser($_SESSION['id']);
+    $user = getUser($getId);
+    $myComments = getMyComments($myProfile['username']);
+    $userComments = getMyComments($user['username']);
+    $commentDel = $_GET['del'];
+    if ($commentDel) {
+        deleteComment($commentDel);
+        header("Location: ./?route=profile");
+    }
+?>
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Suyunbek Profile</title>
+        <link rel="stylesheet" href="../styles/all.min.css">
+        <link rel="stylesheet" href="../styles/color.css?v=<?= time();?>">
+        <link rel="stylesheet" href="../styles/style.css?v=<?= time();?>">
+        <link rel="stylesheet" href="../styles/media.css?v=<?= time();?>">
+        <link rel="icon" href="../img/icon.jpg">
+    </head>
+<body>
 <?if(count($myComments) > 0):?>
     <? for ($i=count($myComments)-1; $i >= 0; $i--): ?>
-    <div class="comment" data-aos="flip-right" data-aos-duration="1000" data-aos-delay="300">
-        <div class="comment_img_blog">
-            <a href="./?route=profile"><img src="<?= $myProfile['avatar']?>" alt="" class="comment_img" title="View profile"></a>
-        </div>
-        <div class="comment_body">
-            <div class="comment_item">
-                <p class="comment_text"><?= $myComments[$i]['comment']?></p>
-                <form action="../components/edit-comment.php" method="post" class="comment_edit_form" style="display: none;">
-                    <textarea name="comment" class="comment_area" value="<?= $myComments[$i]['comment']?>" placeholder="Message" required></textarea>
-                    <input type="hidden" name="id" value="<?= $myComments[$i]['id']?>">
-                    <input type="hidden" name="username" value="<?= $myComments[$i]['username']?>">
-                    <div class="edit_comment_buttons">
-                        <button class="btn edit_comment_button edit_comment_btn" type="submit">Save</button>
-                        <button class="btn edit_comment_button cancel_comment_btn" type="button">Cancel</button>
+        <div class="comment" data-aos="flip-right" data-aos-duration="1000" data-aos-delay="300">
+            <div class="comment_img_blog">
+                <a href="./?route=profile&id=<?= $comments[$i]['userID']?>"><img src="<?= $comments[$i]['avatar']?>" alt="" class="comment_img" title="View profile"></a>
+            </div>
+            <div class="comment_body">
+                <div class="comment_item">
+                    <p class="comment_text"><?= $comments[$i]['comment']?></p>
+                    <div class="comment_functions" style="display: none;">
+                        <a href="#" class="comment_function" id="edit" title="Edit comment"><i class="fas fa-pen"></i></a href="#">
+                        <a href="#" class="comment_function" id="delete" title="Delete comment"><i class="fas fa-trash"></i></a href="#">
                     </div>
-                </form>
-                <div class="comment_functions" style="display: <?= $isMyProfile ? 'flex' : 'none'?>;">
-                    <a href="#" class="comment_function" id="edit" title="Edit comment"><i class="fas fa-pen"></i></a href="#">
-                    <a href="./?route=profile&del=<?= $myComments[$i]['id']?>" class="comment_function" id="delete" title="Delete comment"><i class="fas fa-trash"></i></a href="#">
+                </div>
+                <div class="comment_footer">
+                    <a href="./?route=profile" class="comment_name" title="View profile"><?= $comments[$i]['username']?></a>
+                    <p class="comment_date" title="Comment created Date"><?= $comments[$i]['date']?></p>
                 </div>
             </div>
-            <div class="comment_footer">
-                <a href="./?route=profile" class="comment_name" title="View profile"><?= $myComments[$i]['username']?></a>
-                <p class="comment_date" title="Comment created Date"><?= $myComments[$i]['date']?></p>
-            </div>
         </div>
-    </div>
     <?endfor;
+else : "<h1>Comments not found</h1>";
 endif;?>
+    <script src="../js/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
+</body>
+</html>

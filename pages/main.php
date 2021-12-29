@@ -387,6 +387,16 @@ $sizeComments = count($comments);
                                     <a href="https://t.me/MrUzcoin" class="contact_box_link" target="_blank">+998906225022</a>
                                 </div>
                             </div>
+                        </div>
+                        <div class="send_comment">
+                            <h3 class="content_titles send_comment_title" data-aos="fade-up" data-aos-duration="1000">Write & See <span>Comments</span></h3>
+                            <form action="" class="comments_form">
+                                <label for="comment" class="comments_label">Write comment</label>
+                                <div class="comment_textarea" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="300">
+                                    <textarea name="comment" class="comment_area" maxlength="300" placeholder="Message" required></textarea>
+                                </div>
+                                <button type="submit" class="btn comment_btn" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="400">Send</button>
+                            </form>
                             <div class="social_media">
                                 <a href="https://t.me/MrUzcoin" class="messangers">
                                     <i class="fab fa-telegram"></i>
@@ -402,32 +412,6 @@ $sizeComments = count($comments);
                                 </a>
                             </div>
                         </div>
-                        <div class="send_comment">
-                            <h3 class="content_titles send_comment_title" data-aos="fade-up" data-aos-duration="1000">Write & See <span>Comments</span></h3>
-                            <form action="" class="comments_form">
-                                <label for="job" class="comments_label">Your job</label>
-                                <div class="select" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100">
-                                    <button type="button" name="job" id="job" class="select_input">Not selected</button>
-                                    <div class="options">
-                                        <p class="options_item active">Web Developer</p>
-                                        <p class="options_item">Web Designer</p>
-                                    </div>
-                                </div>
-                                <label for="country" class="comments_label">Your Country</label>
-                                <div class="select" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">
-                                    <button type="button" name="country" id="country" class="select_input">Not selected</button>
-                                    <div class="options">
-                                        <p class="options_item active">Uzbekistan</p>
-                                        <p class="options_item">Russia</p>
-                                    </div>
-                                </div>
-                                <label for="comment" class="comments_label">Write comment</label>
-                                <div class="comment_textarea" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="300">
-                                    <textarea name="comment" class="comment_area" maxlength="300" placeholder="Message" required></textarea>
-                                </div>
-                                <button type="submit" class="btn comment_btn" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="400">Send</button>
-                            </form>
-                        </div>
                     </div>
                 </div>
             </section>
@@ -440,7 +424,7 @@ $sizeComments = count($comments);
                         <? for ($i=count($comments)-1; $i >= count($comments)-7; $i--): ?>
                         <div class="comment" data-aos="flip-right" data-aos-duration="1000" data-aos-delay="300">
                             <div class="comment_img_blog">
-                                <a href="./?route=profile"><img src="" alt="" class="comment_img" title="View profile"></a>
+                                <a href="./?route=profile&id=<?= $comments[$i]['userID']?>"><img src="<?= $comments[$i]['avatar']?>" alt="" class="comment_img" title="View profile"></a>
                             </div>
                             <div class="comment_body">
                                 <div class="comment_item">
@@ -459,7 +443,7 @@ $sizeComments = count($comments);
                         <?endfor;
                     endif;?>
                     </div>
-                    <a href="#" class="btn load_more" data-aos="fade-down" data-aos-duration="1000" data-aos-delay="400">Load more</a>
+                    <a href="./?route=comments" class="btn load_more" data-aos="fade-down" data-aos-duration="1000" data-aos-delay="400">Load more</a>
                 </div>
             </section>
 

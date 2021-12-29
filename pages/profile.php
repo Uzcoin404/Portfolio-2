@@ -208,6 +208,8 @@
                                 <form action="../components/set-comments.php" method="post" class="write_comments_form">
                                     <textarea type="text" name="comment" class="comment_write" title="Please write comment here" placeholder="Your message..." required></textarea>
                                     <input type="hidden" value="<?= $myProfile['username']?>" name="username">
+                                    <input type="hidden" value="<?= $myProfile['id']?>" name="userID">
+                                    <input type="hidden" value="<?= $myProfile['avatar']?>" name="avatar">
                                     <button class="comment_send_btn" type="submit"><i class="fas fa-paper-plane"></i></i></button>
                                 </form>
                             </div>

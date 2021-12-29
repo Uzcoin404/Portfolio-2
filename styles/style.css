@@ -1195,6 +1195,10 @@ nav.sticky .menu_btn_span, nav.active .menu_btn_span, nav.sticky .menu_btn::befo
     display: flex;
     justify-content: center;
 }
+.social_media{
+    display: flex;
+    justify-content: flex-end;
+}
 /* Footer styling */
 .footer{
     background: #212529;
