@@ -2,10 +2,10 @@
 -- version 4.9.0.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1:3306
--- Generation Time: Dec 29, 2021 at 10:43 AM
--- Server version: 10.3.13-MariaDB-log
--- PHP Version: 7.1.32
+-- Хост: 127.0.0.1:3306
+-- Время создания: Дек 29 2021 г., 13:40
+-- Версия сервера: 10.3.13-MariaDB-log
+-- Версия PHP: 7.1.32
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -19,43 +19,45 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `portfolio_2`
+-- База данных: `portfolio_2`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `comments`
+-- Структура таблицы `comments`
 --
 
 CREATE TABLE `comments` (
   `id` int(11) NOT NULL,
   `username` varchar(60) NOT NULL,
+  `userID` int(11) NOT NULL,
   `comment` varchar(300) NOT NULL,
   `avatar` varchar(200) NOT NULL,
   `date` varchar(60) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `comments`
+-- Дамп данных таблицы `comments`
 --
 
-INSERT INTO `comments` (`id`, `username`, `comment`, `avatar`, `date`) VALUES
-(1, 'fdgdf', 'gdfgd', '', 'fgsdfgsdfg'),
-(2, 'test', 'sdfdsfdsf', '', '2021-12-27 19:56'),
-(3, 'test', 'tyt ytr ydt 45645 6rtygf hgfhfghg546456', '', '2021-12-27 21:05'),
-(4, 'test', 'fsdfdsfg gdfg df gdfgdfgdfgwe6546y45 5654 dgy r645 g dfg54645645645', '', '2021-12-27 21:10'),
-(8, 'test', 'uigt uhgdfugoidgdsfuyg dfoupghosdfighisdofgh86y dfoiuhgodfghoifdg08th gsdfgsdfg', '', '2021-12-28 20:36'),
-(9, 'fdgdf', 'gdfgd', '', 'fgsdfgsdfg'),
-(10, 'test', 'sdfdsfdsf', '', '2021-12-27 19:56'),
-(11, 'test', 'tyt ytr ydt 45645 6rtygf hgfhfghg546456', '', '2021-12-27 21:05'),
-(12, 'test', 'tyt ytr ydt 45645 6rtygf hgfhfghg546456', '', '2021-12-27 21:05'),
-(13, 'test', 'uigt uhgdfugoidgdsfuyg dfoupghosdfighisdofgh86y dfoiuhgodfghoifdg08th gsdfgsdfg', '', '2021-12-28 20:36');
+INSERT INTO `comments` (`id`, `username`, `userID`, `comment`, `avatar`, `date`) VALUES
+(1, 'fdgdf', 0, 'gdfgd', '', 'fgsdfgsdfg'),
+(2, 'test', 0, 'sdfdsfdsf', '', '2021-12-27 19:56'),
+(3, 'test', 0, 'tyt ytr ydt 45645 6rtygf hgfhfghg546456', '', '2021-12-27 21:05'),
+(4, 'test', 0, 'fsdfdsfg gdfg df gdfgdfgdfgwe6546y45 5654 dgy r645 g dfg54645645645', '', '2021-12-27 21:10'),
+(8, 'test', 0, 'uigt uhgdfugoidgdsfuyg dfoupghosdfighisdofgh86y dfoiuhgodfghoifdg08th gsdfgsdfg', '', '2021-12-28 20:36'),
+(9, 'fdgdf', 0, 'gdfgd', '', 'fgsdfgsdfg'),
+(10, 'test', 0, 'sdfdsfdsf', '', '2021-12-27 19:56'),
+(11, 'test', 0, 'tyt ytr ydt 45645 6rtygf hgfhfghg546456', '', '2021-12-27 21:05'),
+(12, 'test', 0, 'tyt ytr ydt 45645 6rtygf hgfhfghg546456', '', '2021-12-27 21:05'),
+(13, 'test', 0, 'uigt uhgdfugoidgdsfuyg dfoupghosdfighisdofgh86y dfoiuhgodfghoifdg08th gsdfgsdfg', '', '2021-12-28 20:36'),
+(14, 'test', 0, 'dfkgjh dfjghdfjghldfkgjldfsk gdfjjg;l;lsdflgdfg\r\n', '../img/avatar/test.jpg', '2021-12-29 15:11');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `users`
+-- Структура таблицы `users`
 --
 
 CREATE TABLE `users` (
@@ -71,7 +73,7 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `users`
+-- Дамп данных таблицы `users`
 --
 
 INSERT INTO `users` (`id`, `name`, `username`, `email`, `phone`, `password`, `bio`, `avatar`, `date`) VALUES
@@ -85,17 +87,17 @@ INSERT INTO `users` (`id`, `name`, `username`, `email`, `phone`, `password`, `bi
 (8, 'dfgsdgfa', 'test', 'fd@ffs', '4565465', '$2y$10$qdG/Ft2rOOaqeRCFYMBmPOZMg70fq8u/fc64p0TXzN2keSIlVGUB6', 'hgfhdfgh', '../img/avatar/test.jpg', '2021-12-27 19:50:03');
 
 --
--- Indexes for dumped tables
+-- Индексы сохранённых таблиц
 --
 
 --
--- Indexes for table `comments`
+-- Индексы таблицы `comments`
 --
 ALTER TABLE `comments`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `users`
+-- Индексы таблицы `users`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`),
@@ -103,17 +105,17 @@ ALTER TABLE `users`
   ADD UNIQUE KEY `email` (`email`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT для сохранённых таблиц
 --
 
 --
--- AUTO_INCREMENT for table `comments`
+-- AUTO_INCREMENT для таблицы `comments`
 --
 ALTER TABLE `comments`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
--- AUTO_INCREMENT for table `users`
+-- AUTO_INCREMENT для таблицы `users`
 --
 ALTER TABLE `users`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
