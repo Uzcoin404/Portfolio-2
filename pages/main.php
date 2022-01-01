@@ -429,18 +429,15 @@ $sizeComments = count($comments);
                             <div class="comment_body">
                                 <div class="comment_item">
                                     <p class="comment_text"><?= $comments[$i]['comment']?></p>
-                                    <div class="comment_functions" style="display: none;">
-                                        <a href="#" class="comment_function" id="edit" title="Edit comment"><i class="fas fa-pen"></i></a href="#">
-                                        <a href="#" class="comment_function" id="delete" title="Delete comment"><i class="fas fa-trash"></i></a href="#">
-                                    </div>
                                 </div>
                                 <div class="comment_footer">
-                                    <a href="./?route=profile" class="comment_name" title="View profile"><?= $comments[$i]['username']?></a>
+                                    <a href="./?route=profile&id=<?= $comments[$i]['userID']?>" class="comment_name" title="View profile"><?= $comments[$i]['username']?></a>
                                     <p class="comment_date" title="Comment created Date"><?= $comments[$i]['date']?></p>
                                 </div>
                             </div>
                         </div>
                         <?endfor;
+                        else : "<h1>Comments not found</h1>";
                     endif;?>
                     </div>
                     <a href="./?route=comments" class="btn load_more" data-aos="fade-down" data-aos-duration="1000" data-aos-delay="400">Load more</a>

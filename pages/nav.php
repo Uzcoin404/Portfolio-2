@@ -1,15 +1,29 @@
+            <div class="nav_lights">
+                <img src="./img/girlanda.gif" alt="" class="nav_light">
+                <img src="./img/girlanda.gif" alt="" class="nav_light">
+                <img src="./img/girlanda.gif" alt="" class="nav_light">
+                <img src="./img/girlanda.gif" alt="" class="nav_light">
+                <img src="./img/girlanda.gif" alt="" class="nav_light">
+                <img src="./img/girlanda.gif" alt="" class="nav_light">
+                <img src="./img/girlanda.gif" alt="" class="nav_light">
+                <img src="./img/girlanda.gif" alt="" class="nav_light">
+                <img src="./img/girlanda.gif" alt="" class="nav_light">
+                <img src="./img/girlanda.gif" alt="" class="nav_light">
+                <img src="./img/girlanda.gif" alt="" class="nav_light">
+                <img src="./img/girlanda.gif" alt="" class="nav_light">
+            </div>
             <nav class="nav">
                 <div class="container_glass">
                     <div class="nav_blog">
                         <a href="/" class="nav_logo"><p class="logo_text">Uzcoin</p></a>
                         <ul class="nav_list">
-                            <li><a href="<?= $isProfile ? '../' : ''?>#home" class="nav_link">Home</a></li>
-                            <li><a href="<?= $isProfile ? '../' : ''?>#about" class="nav_link">About</a></li>
-                            <li><a href="<?= $isProfile ? '../' : ''?>#skills" class="nav_link">Skills</a></li>
-                            <li><a href="<?= $isProfile ? '../' : ''?>#projects" class="nav_link">Projects</a></li>
-                            <li><a href="<?= $isProfile ? '../' : ''?>#service" class="nav_link">Service</a></li>
-                            <li><a href="<?= $isProfile ? '../' : ''?>#contact" class="nav_link">Contact</a></li>
-                            <li><a href="<?= $isProfile ? '../' : ''?>#comments" class="nav_link">Comments</a></li>
+                            <li><a href="<?= $isProfile || $_GET['route'] == 'comments' ? '../' : ''?>#home" class="nav_link">Home</a></li>
+                            <li><a href="<?= $isProfile || $_GET['route'] == 'comments' ? '../' : ''?>#about" class="nav_link">About</a></li>
+                            <li><a href="<?= $isProfile || $_GET['route'] == 'comments' ? '../' : ''?>#skills" class="nav_link">Skills</a></li>
+                            <li><a href="<?= $isProfile || $_GET['route'] == 'comments' ? '../' : ''?>#projects" class="nav_link">Projects</a></li>
+                            <li><a href="<?= $isProfile || $_GET['route'] == 'comments' ? '../' : ''?>#service" class="nav_link">Service</a></li>
+                            <li><a href="<?= $isProfile || $_GET['route'] == 'comments' ? '../' : ''?>#contact" class="nav_link">Contact</a></li>
+                            <li><a href="<?= $isProfile || $_GET['route'] == 'comments' ? '../' : ''?>#comments" class="nav_link">Comments</a></li>
                         </ul>
                         <div class="nav_functions">
                             <a href="./?route=login-register" class="btn nav_button" style="display: <?= !$_SESSION['id'] ? 'block' : 'none'?>;">Sign in</a>

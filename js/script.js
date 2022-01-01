@@ -1,5 +1,6 @@
 window.addEventListener('load', function(){
     this.document.querySelector('.loader').style.display = 'none';
+    document.body.style.overflow = 'auto';
 });
 var cnt=document.getElementById("count"); 
 var water=document.getElementById("water");

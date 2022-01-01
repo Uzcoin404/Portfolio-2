@@ -28,7 +28,7 @@ main.night .loader{
     background: #212529;
 }
 main.night .container_glass, main.night .about_box, main.night .profile_panel, .main.night .about_profile, main.night .profile_comments, .main.night .edit_profile{
-    background: rgba(0, 0, 0, 0.630);
+    background: rgba(0, 0, 0, 0.650);
 }
 main.night .profile_content, .main.night .delete_alert {
     background: rgb(0, 0, 0, 0.8);

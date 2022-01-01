@@ -31,6 +31,30 @@
     <body>
         
     <main class="main day profile_body">
+        <div class="loader">
+            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" style="display: none;">
+                <symbol id="wave">
+                <path d="M420,20c21.5-0.4,38.8-2.5,51.1-4.5c13.4-2.2,26.5-5.2,27.3-5.4C514,6.5,518,4.7,528.5,2.7c7.1-1.3,17.9-2.8,31.5-2.7c0,0,0,0,0,0v20H420z"></path>
+                <path d="M420,20c-21.5-0.4-38.8-2.5-51.1-4.5c-13.4-2.2-26.5-5.2-27.3-5.4C326,6.5,322,4.7,311.5,2.7C304.3,1.4,293.6-0.1,280,0c0,0,0,0,0,0v20H420z"></path>
+                <path d="M140,20c21.5-0.4,38.8-2.5,51.1-4.5c13.4-2.2,26.5-5.2,27.3-5.4C234,6.5,238,4.7,248.5,2.7c7.1-1.3,17.9-2.8,31.5-2.7c0,0,0,0,0,0v20H140z"></path>
+                <path d="M140,20c-21.5-0.4-38.8-2.5-51.1-4.5c-13.4-2.2-26.5-5.2-27.3-5.4C46,6.5,42,4.7,31.5,2.7C24.3,1.4,13.6-0.1,0,0c0,0,0,0,0,0l0,20H140z"></path>
+                </symbol>
+            </svg>
+            <div class="box">
+                <div class="percent">
+                <div class="percentNum" id="count">0</div>
+                <div class="percentB">%</div>
+                </div>
+                <div id="water" class="water">
+                <svg viewBox="0 0 560 20" class="water_wave water_wave_back">
+                    <use xlink:href="#wave"></use>
+                </svg>
+                <svg viewBox="0 0 560 20" class="water_wave water_wave_front">
+                    <use xlink:href="#wave"></use>
+                </svg>
+                </div>
+            </div>
+        </div>
         <div class="profile">
 
             <?include_once('nav.php');?>
@@ -42,6 +66,32 @@
             <div class="profile_info">
                 <div class="container">
                     <div class="profile_panel">
+                        <h2 class="loader_title">
+                            <div class="words">
+                                <span style="--i:1;">H</span>
+                                <span style="--i:2;">a</span>
+                                <span style="--i:3;">p</span>
+                                <span style="--i:4;">p</span>
+                                <span style="--i:5;margin-right: 15px">y</span>
+                            </div>
+                            <div class="words">
+                                <span style="--i:6;">N</span>
+                                <span style="--i:7;">e</span>
+                                <span style="--i:8;margin-right: 15px">w</span>
+                            </div>
+                            <div class="words">
+                                <span style="--i:9;">Y</span>
+                                <span style="--i:10;">e</span>
+                                <span style="--i:11;">a</span>
+                                <span style="--i:12;margin-right: 15px">r</span>
+                            </div>
+                            <div class="words">
+                                <span style="--i:13;">2</span>
+                                <span style="--i:14;">0</span>
+                                <span style="--i:15;">2</span>
+                                <span style="--i:16;">2</span>
+                            </div>
+                        </h2>
                         <div class="user_avatar">
                             <img src="<?= $isMyProfile ? $myProfile['avatar'] : $user['avatar']?>" alt="" class="user_img">
                             <div class="user_avatar_content">
@@ -140,7 +190,7 @@
                                 <? if($isMyProfile): 
                                     if(count($myComments) > 0):?>
                                     <? for ($i=count($myComments)-1; $i >= 0; $i--): ?>
-                                    <div class="comment" data-aos="flip-right" data-aos-duration="1000" data-aos-delay="300">
+                                    <div class="comment" <?= count($myComments)-2 <= $i ? "data-aos='flip-right' data-aos-duration='1000' data-aos-delay='300'" : ''?>>
                                         <div class="comment_img_blog">
                                             <a href="./?route=profile"><img src="<?= $myProfile['avatar']?>" alt="" class="comment_img" title="View profile"></a>
                                         </div>

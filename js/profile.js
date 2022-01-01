@@ -1,3 +1,21 @@
+window.addEventListener('load', function(){
+    this.document.querySelector('.loader').style.display = 'none';
+    document.body.style.overflow = 'auto';
+});
+var cnt=document.getElementById("count"); 
+var water=document.getElementById("water");
+var percent=cnt.innerText;
+var interval;
+interval=setInterval(function(){ 
+  percent++; 
+  cnt.innerHTML = percent; 
+  water.style.transform='translate(0'+','+(100-percent)+'%)';
+  if(percent==100){
+    setTimeout(() => {
+        percent = 0;
+    }, 100);
+  }
+},75);
 AOS.init();
 // day night mode
 let daysToExpire = new Date(2147483647 * 1000).toUTCString();
@@ -40,31 +58,7 @@ if (getCookie('theme') == 'day') {
     main.classList.remove('day');
     main.classList.add('night');
 }
-document.querySelector('.user_img').style.height = document.querySelector('.user_img').offsetWidth + 'px';
-window.addEventListener('resize', function(){
-    document.querySelector('.user_img').style.height = document.querySelector('.user_img').offsetWidth + 'px';
-});
 
-const inputs = document.querySelectorAll('.form_input');
-const password = document.querySelector('.form_password');
-const passwordEye = document.querySelector('.password_eye');
-for (let i = 0; i < inputs.length; i++) {
-    inputs[i].addEventListener('input', function(){
-        if (this.value.length > 0) {
-            this.classList.add('filled');
-        } else{
-            this.classList.remove('filled');
-        }
-    });
-}
-passwordEye.addEventListener('click', function(){
-    this.classList.toggle('active');
-    if (this.classList.contains('active')) {
-        password.type = 'text';
-    } else{
-        password.type = 'password';
-    }
-});
 const menuBtn = document.querySelector('.menu_btn_blog');
 const nav = document.querySelector('nav');
 let isMenu = false;
@@ -94,6 +88,7 @@ window.addEventListener('click', function(e) {
         }
     }
 });
+const comment = document.querySelectorAll('.comment');
 const profileComments = document.querySelector('.profile_user_comments');
 const profilePanel = document.querySelector('.profile_panel');
 const commentEditForm = document.querySelectorAll('.comment_edit_form');
@@ -102,12 +97,14 @@ const delCommentBtn = document.querySelectorAll('#delete');
 const deleteAlert = document.querySelector('.delete_alert');
 const cancelCommentBtn = document.querySelectorAll('.cancel_comment_btn');
 const commentText = document.querySelectorAll('.comment_text');
-profileComments.querySelector('.profile_comments_content').style.height = profilePanel.offsetHeight - 50 + 'px';
+
 for (let i = 0; i < editCommentBtn.length; i++) {   
+    let commentWidth = comment[i].offsetWidth;
     editCommentBtn[i].addEventListener('click', function(e){
         e.preventDefault();
         commentText[i].style.display = 'none';
         commentEditForm[i].style.display = 'block';
+        comment[i].style.width = commentWidth + 'px';
     });
     cancelCommentBtn[i].addEventListener('click', function(){
         commentText[i].style.display = 'block';
@@ -130,4 +127,31 @@ window.addEventListener('click', function(e){
             break;
         }
     }
+});
+
+profileComments.querySelector('.profile_comments_content').style.height = profilePanel.offsetHeight - 50 + 'px';
+const inputs = document.querySelectorAll('.form_input');
+const password = document.querySelector('.form_password');
+const passwordEye = document.querySelector('.password_eye');
+for (let i = 0; i < inputs.length; i++) {
+    inputs[i].addEventListener('input', function(){
+        if (this.value.length > 0) {
+            this.classList.add('filled');
+        } else{
+            this.classList.remove('filled');
+        }
+    });
+}
+passwordEye.addEventListener('click', function(){
+    this.classList.toggle('active');
+    if (this.classList.contains('active')) {
+        password.type = 'text';
+    } else{
+        password.type = 'password';
+    }
+});
+
+document.querySelector('.user_img').style.height = document.querySelector('.user_img').offsetWidth + 'px';
+window.addEventListener('resize', function(){
+    document.querySelector('.user_img').style.height = document.querySelector('.user_img').offsetWidth + 'px';
 });
