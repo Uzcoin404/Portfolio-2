@@ -18,6 +18,12 @@ else :
 <body>
 
     <main class="main">
+        <? if($_GET['error']): ?>
+        <div class="error_alert">
+            <h4 class="error_text">The email or password you entered is invalid</h4>
+            <span class="error_close"><i class="fas fa-times"></i></span>
+        </div>
+        <?endif;?>
         <div class="container">
             <div class="forms">
                 <div class="sign__blog">

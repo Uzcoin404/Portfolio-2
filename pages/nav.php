@@ -23,7 +23,7 @@
                             <li><a href="<?= $isProfile || $_GET['route'] == 'comments' ? '../' : ''?>#projects" class="nav_link">Projects</a></li>
                             <li><a href="<?= $isProfile || $_GET['route'] == 'comments' ? '../' : ''?>#service" class="nav_link">Service</a></li>
                             <li><a href="<?= $isProfile || $_GET['route'] == 'comments' ? '../' : ''?>#contact" class="nav_link">Contact</a></li>
-                            <li><a href="<?= $isProfile || $_GET['route'] == 'comments' ? '../' : ''?>#comments" class="nav_link">Comments</a></li>
+                            <li><a href="../?route=comments" class="nav_link">Comments</a></li>
                         </ul>
                         <div class="nav_functions">
                             <a href="./?route=login-register" class="btn nav_button" style="display: <?= !$_SESSION['id'] ? 'block' : 'none'?>;">Sign in</a>

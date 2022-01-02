@@ -149,4 +149,12 @@ function deleteComment($id){
     }
     return $result;
 }
+function commentsLimit($begin, $perPage){
+    $pdo = pdo();
+    $query = "SELECT * FROM comments LIMIT $begin,$perPage";
+    $driver = $pdo->prepare($query);
+    $result = $driver->execute();
+    $comments = $driver->fetchAll(PDO::FETCH_ASSOC);
+    return $comments;
+}
 ?>

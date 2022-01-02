@@ -34,6 +34,26 @@
     z-index: 6;
     transition: 2s ease-in-out;
 }
+.error_alert{
+    position: fixed;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 10px 20px;
+    font-size: 20px;
+    background: #222;
+    color: #fff;
+    z-index: 555;
+    display: flex;
+    align-items: center;
+    border-radius: 10px;
+}
+.error_alert .error_close{
+    font-size: 24px;
+    padding-left: 20px;
+    cursor: pointer;
+    color: #008cff;
+}
 .sign__blog{
     position: absolute;
     top: 50%;

@@ -94,7 +94,7 @@
                         </h2>
                         <div class="user_avatar">
                             <img src="<?= $isMyProfile ? $myProfile['avatar'] : $user['avatar']?>" alt="" class="user_img">
-                            <div class="user_avatar_content">
+                            <div class="user_avatar_content" style="display: <?= $isMyProfile ? 'block' : 'none'?>;">
                                 <a href="./?route=change-avatar&id=<?= $_SESSION['id'];?>" class="user_avatar_change"><span><i class="fas fa-edit"></i></span>Change photo</a>
                             </div>
                         </div>
@@ -116,8 +116,8 @@
                             </a>
                         </div>
                     </div>
-                    <div class="profile_main">
-                        <div class="about_profile">
+                    <div class="profile_main" style="grid-template-rows: <?= $isMyProfile ? '1fr 1fr' : '1fr'?>;">
+                        <div class="about_profile" style="<?= !$isMyProfile ? 'display: flex;justify-content: center;align-items: center;flex-direction: column' : ''?>">
                             <h2 class="about_profile_title"><i class="fas fa-info-circle"></i> <?= $isMyProfile ? 'Your' : $user['name'] . "'s"?> Profile</h2>
                             <div class="user_info">
                                 <div class="user_info_item">
@@ -183,7 +183,7 @@
                         </div>
                     </div>
                     <div class="profile_comments">
-                        <h2 class="profile_comments_title"><i class="fas fa-comments"></i> Your Comments</h2>
+                        <h2 class="profile_comments_title"><i class="fas fa-comments"></i> <?= $isMyProfile ? 'Your' : $user['name'] . "'s"?> Comments</h2>
                         <div class="profile_comments_main">
                             <div class="profile_user_comments">
                                 <div class="profile_comments_content">
@@ -222,9 +222,9 @@
                                 else :
                                     if(count($userComments) > 0): ?>
                                     <? for ($i=count($userComments)-1; $i >= 0; $i--): ?>
-                                    <div class="comment" data-aos="flip-right" data-aos-duration="1000" data-aos-delay="300">
+                                    <div class="comment" <?= count($userComments)-2 <= $i ? "data-aos='flip-right' data-aos-duration='1000' data-aos-delay='300'" : ''?>>
                                         <div class="comment_img_blog">
-                                            <a href="./?route=profile&id=<?= $user['id']?>"><img src="<?= $myProfile['avatar']?>" alt="" class="comment_img" title="View profile"></a>
+                                            <a href="./?route=profile&id=<?= $user['id']?>"><img src="<?= $user['avatar']?>" alt="" class="comment_img" title="View profile"></a>
                                         </div>
                                         <div class="comment_body">
                                             <div class="comment_item">

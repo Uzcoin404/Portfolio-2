@@ -5,6 +5,13 @@
     $myProfile = getUser($_SESSION['id']);
     $comments = getComments();
     $commentDel = $_GET['del'];
+    $isLatest = $_GET['latest'];
+    $perPage = 10;
+    $listIndex = $_GET['list'];
+    $pages = ceil(sizeof($comments) / $perPage);
+    $listIndex ? $list = $listIndex : $list = 1;
+    $firstList = ($list-1) * $perPage;
+    $allComments = commentsLimit($firstList, $perPage);
     if ($commentDel && $isMyProfile) {
         deleteComment($commentDel);
         header("Location: ./?route=profile");
@@ -52,11 +59,16 @@
                 </div>
             </div>
 
+            <div class="delete_alert">
+                <p class="delete_alert_text">Do you really want to delete this comment</p>
+                <a href="#" class="btn delete_alert_btn">Yes</a>
+            </div>
+
             <?include_once('./pages/nav.php')?>
             <div class="container_glass">
                 <h2 class="title comments_title">All <span>Comments</span></h2>
                 <div class="comments_body">
-                    <?if(count($comments) > 0):?>
+                    <?if(count($comments) > 0 && $isLatest):?>
                     <? for ($i=count($comments)-1; $i >= 0; $i--):
                         $isMyComments = $comments[$i]['userID'] == $_SESSION['id'] ? true : false;?>
                         <div class="comment" data-aos="flip-right" data-aos-duration="1000" data-aos-delay="300">
@@ -68,8 +80,8 @@
                                     <p class="comment_text"><?= $comments[$i]['comment']?></p>
                                     <form action="../components/edit-comment.php" method="post" class="comment_edit_form" style="display: none;">
                                         <textarea name="comment" class="comment_area" value="<?= $comments[$i]['comment']?>" placeholder="Message" required></textarea>
-                                        <input type="hidden" name="id" value="<?= $myProfile['id']?>">
-                                        <input type="hidden" name="username" value="<?= $myProfile['username']?>">
+                                        <input type="hidden" name="id" value="<?= $comments[$i]['id']?>">
+                                        <input type="hidden" name="username" value="<?= $comments[$i]['username']?>">
                                         <div class="edit_comment_buttons">
                                             <button class="btn edit_comment_button edit_comment_btn" type="submit">Save</button>
                                             <button class="btn edit_comment_button cancel_comment_btn" type="button">Cancel</button>
@@ -87,8 +99,59 @@
                             </div>
                         </div>
                     <?endfor;
-                    else : "<h1>Comments not found</h1>";
-                    endif;?>
+                    else : ?>
+                        <? for ($i=0; $i < count($allComments); $i++):
+                        $isMyComments = $allComments[$i]['userID'] == $_SESSION['id'] ? true : false;?>
+                        <div class="comment" data-aos="flip-right" data-aos-duration="1000" data-aos-delay="300">
+                            <div class="comment_img_blog">
+                                <a href="./?route=profile&id=<?= $allComments[$i]['userID']?>"><img src="<?= !$isMyComments ? $allComments[$i]['avatar'] : $myProfile['avatar']?>" alt="" class="comment_img" title="View profile"></a>
+                            </div>
+                            <div class="comment_body">
+                                <div class="comment_item">
+                                    <p class="comment_text"><?= $allComments[$i]['comment']?></p>
+                                    <form action="../components/edit-comment.php" method="post" class="comment_edit_form" style="display: none;">
+                                        <textarea name="comment" class="comment_area" value="<?= $allComments[$i]['comment']?>" placeholder="Message" required></textarea>
+                                        <input type="hidden" name="id" value="<?= $allComments[$i]['id']?>">
+                                        <input type="hidden" name="username" value="<?= $allComments[$i]['username']?>">
+                                        <div class="edit_comment_buttons">
+                                            <button class="btn edit_comment_button edit_comment_btn" type="submit">Save</button>
+                                            <button class="btn edit_comment_button cancel_comment_btn" type="button">Cancel</button>
+                                        </div>
+                                    </form>
+                                    <div class="comment_functions" style="display: <?= $isMyComments ? 'flex' : 'none'?>;">
+                                        <a href="#" class="comment_function" id="edit" title="Edit comment"><i class="fas fa-pen"></i></a href="#">
+                                        <a href="./?route=profile&del=<?= $allComments[$i]['id']?>" class="comment_function" id="delete" title="Delete comment"><i class="fas fa-trash"></i></a href="#">
+                                    </div>
+                                </div>
+                                <div class="comment_footer">
+                                    <a href="./?route=profile&id=<?= $allComments[$i]['userID']?>" class="comment_name" title="View profile"><?= $allComments[$i]['username']?></a>
+                                    <p class="comment_date" title="Comment created Date"><?= $allComments[$i]['date']?></p>
+                                </div>
+                            </div>
+                        </div>
+                        <?endfor;?>
+                    <?endif;?>
+                </div>
+                <?if (!$isLatest):?>
+                    <div class="paginator">
+                        <div class="pagination">
+                            <ul>
+                            <?if($listIndex-1 != 0 && $list-1 != 0):?>
+                                <button><a href="../?route=comments&list=<?= $listIndex-1?>" class="btn prev"><i class="fas fa-angle-left"></i> Oldingi</a></button>
+                            <?endif;?>
+                            <?for ($list=1; $list <= $pages; $list++):?>
+                                <a href="../?route=comments&list=<?= $list?>" class="numb <?= $listIndex == $list ? "active" : ""?>"><?= $list?></a>
+                            <?endfor;?>
+                            <?if($listIndex+1 <= $pages):?>
+                                <button><a href="../?route=comments&list=<?= $listIndex ? $listIndex+1 : 2?>" class="btn next">Keyingi <i class="fas fa-angle-right"></i></a></button>
+                            <?endif;?>
+                            </ul>
+                        </div>
+                    </div>
+                <?endif;?>
+                <div class="pagination_controls">
+                    <a href="../?route=comments&list=1">View All</a>
+                    <a href="../?route=comments&latest=true">View latest</a>
                 </div>
             </div>
         </main>

@@ -362,10 +362,26 @@ $sizeComments = count($comments);
             <section class="contact" id="contact">
                 <div class="container_glass">
                     <h2 class="title contact_title">Contact <span>me</span></h2>
-                    <div class="contact_content">
-                        <div class="contact_me">
+                    <div class="contact_me">
+                        <div class="contact_left">
                             <h3 class="content_titles contact_content_title" data-aos="fade-down" data-aos-duration="1000">Get in <span>touch</span></h3>
                             <p class="contact_content_text" data-aos="fade-down" data-aos-duration="1000" data-aos-delay="100">If you have a questions or suggestion please feel free to drop me a line. Contact me on my social media profiles or You can write comment for me here. I always online (telegram) send me a message and Of course I reply your message</p>
+                            <div class="social_media">
+                                <a href="https://t.me/MrUzcoin" class="messangers">
+                                    <i class="fab fa-telegram"></i>
+                                    <span class="tooltiptext">MrUzcoin</span>
+                                </a>
+                                <a href="https://twitter.com/MrUzcoin" class="messangers">
+                                    <i class="fab fa-twitter"></i>
+                                    <span class="tooltiptext">MrUzcoin</span>
+                                </a>
+                                <a href="https://www.facebook.com/suyunbek.saydazimov.18/" class="messangers">
+                                    <i class="fab fa-facebook"></i>
+                                    <span class="tooltiptext">Suyunbek</span>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="contact_right">
                             <div class="contact_content_box" data-aos="fade-down" data-aos-duration="1000" data-aos-delay="200">
                                 <span class="contact_box_icon"><i class="fas fa-envelope"></i></span>
                                 <div class="contact_box_info">
@@ -388,30 +404,6 @@ $sizeComments = count($comments);
                                 </div>
                             </div>
                         </div>
-                        <div class="send_comment">
-                            <h3 class="content_titles send_comment_title" data-aos="fade-up" data-aos-duration="1000">Write & See <span>Comments</span></h3>
-                            <form action="" class="comments_form">
-                                <label for="comment" class="comments_label">Write comment</label>
-                                <div class="comment_textarea" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="300">
-                                    <textarea name="comment" class="comment_area" maxlength="300" placeholder="Message" required></textarea>
-                                </div>
-                                <button type="submit" class="btn comment_btn" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="400">Send</button>
-                            </form>
-                            <div class="social_media">
-                                <a href="https://t.me/MrUzcoin" class="messangers">
-                                    <i class="fab fa-telegram"></i>
-                                    <span class="tooltiptext">MrUzcoin</span>
-                                </a>
-                                <a href="https://twitter.com/MrUzcoin" class="messangers">
-                                    <i class="fab fa-twitter"></i>
-                                    <span class="tooltiptext">MrUzcoin</span>
-                                </a>
-                                <a href="https://www.facebook.com/suyunbek.saydazimov.18/" class="messangers">
-                                    <i class="fab fa-facebook"></i>
-                                    <span class="tooltiptext">Suyunbek</span>
-                                </a>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </section>
@@ -421,7 +413,7 @@ $sizeComments = count($comments);
                     <h2 class="title comments_title">What <span>my clients</span> Say ?</h2>
                     <div class="comments_content">
                     <?if(count($comments) > 0):?>
-                        <? for ($i=count($comments)-1; $i >= count($comments)-7; $i--): ?>
+                        <? for ($i=count($comments)-1; $i >= 0; $i--): ?>
                         <div class="comment" data-aos="flip-right" data-aos-duration="1000" data-aos-delay="300">
                             <div class="comment_img_blog">
                                 <a href="./?route=profile&id=<?= $comments[$i]['userID']?>"><img src="<?= $comments[$i]['avatar']?>" alt="" class="comment_img" title="View profile"></a>
@@ -436,7 +428,10 @@ $sizeComments = count($comments);
                                 </div>
                             </div>
                         </div>
-                        <?endfor;
+                        <?if (count($comments)-7 > $i) {
+                            break;
+                        }
+                        endfor;
                         else : "<h1>Comments not found</h1>";
                     endif;?>
                     </div>

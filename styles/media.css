@@ -168,6 +168,9 @@
         grid-column: span 16;
         padding: 15px;
     }
+    .contact_me{
+        justify-content: center;
+    }
 }
 @media (max-width: 650px){
     .contact_content{

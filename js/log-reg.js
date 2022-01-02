@@ -58,6 +58,7 @@ const passwordEye = document.querySelectorAll('.passwordEye');
 const allPassword = document.querySelectorAll('.form_pass');
 const email = document.querySelector('.form_email');
 const errorMessage = document.querySelector('.error_email');
+const errorClose = document.querySelector('.error_close');
 const errorPass = document.querySelector('.error_pass');
 const passwordContent = document.querySelectorAll('.password__content');
 const passwordIndicator = document.querySelectorAll('.password__indicator span');
@@ -69,6 +70,7 @@ const validateEmail = (eml) => {
         /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
         );
 };
+
 for (let i = 0; i < inputs.length; i++) {
     inputs[i].addEventListener('change', function(){
         this.classList.remove('is-invalid');
@@ -216,3 +218,6 @@ class imgUploader {
     }
 }
 const imguploader = new imgUploader();
+errorClose.addEventListener('click', function(){
+    document.querySelector('.error_alert').style.display = 'none';
+});
