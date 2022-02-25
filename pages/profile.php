@@ -66,32 +66,6 @@
             <div class="profile_info">
                 <div class="container">
                     <div class="profile_panel">
-                        <h2 class="loader_title">
-                            <div class="words">
-                                <span style="--i:1;">H</span>
-                                <span style="--i:2;">a</span>
-                                <span style="--i:3;">p</span>
-                                <span style="--i:4;">p</span>
-                                <span style="--i:5;margin-right: 15px">y</span>
-                            </div>
-                            <div class="words">
-                                <span style="--i:6;">N</span>
-                                <span style="--i:7;">e</span>
-                                <span style="--i:8;margin-right: 15px">w</span>
-                            </div>
-                            <div class="words">
-                                <span style="--i:9;">Y</span>
-                                <span style="--i:10;">e</span>
-                                <span style="--i:11;">a</span>
-                                <span style="--i:12;margin-right: 15px">r</span>
-                            </div>
-                            <div class="words">
-                                <span style="--i:13;">2</span>
-                                <span style="--i:14;">0</span>
-                                <span style="--i:15;">2</span>
-                                <span style="--i:16;">2</span>
-                            </div>
-                        </h2>
                         <div class="user_avatar">
                             <img src="<?= $isMyProfile ? $myProfile['avatar'] : $user['avatar']?>" alt="" class="user_img">
                             <div class="user_avatar_content" style="display: <?= $isMyProfile ? 'block' : 'none'?>;">

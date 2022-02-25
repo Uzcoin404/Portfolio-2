@@ -1,17 +1,3 @@
-            <div class="nav_lights">
-                <img src="./img/girlanda.gif" alt="" class="nav_light">
-                <img src="./img/girlanda.gif" alt="" class="nav_light">
-                <img src="./img/girlanda.gif" alt="" class="nav_light">
-                <img src="./img/girlanda.gif" alt="" class="nav_light">
-                <img src="./img/girlanda.gif" alt="" class="nav_light">
-                <img src="./img/girlanda.gif" alt="" class="nav_light">
-                <img src="./img/girlanda.gif" alt="" class="nav_light">
-                <img src="./img/girlanda.gif" alt="" class="nav_light">
-                <img src="./img/girlanda.gif" alt="" class="nav_light">
-                <img src="./img/girlanda.gif" alt="" class="nav_light">
-                <img src="./img/girlanda.gif" alt="" class="nav_light">
-                <img src="./img/girlanda.gif" alt="" class="nav_light">
-            </div>
             <nav class="nav">
                 <div class="container_glass">
                     <div class="nav_blog">

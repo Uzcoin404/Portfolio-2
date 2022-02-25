@@ -5,7 +5,7 @@ function pdo(){
     $dbName = 'portfolio_2';
     $dbUser = 'root';
     $dbPass = '';
-    $host = 'localhost';
+    $host = '127.0.0.1';
     return new PDO("mysql:host=$host; dbname=$dbName;", $dbUser, $dbPass);
 }
 function userReg($name, $username, $email, $phone, $password, $bio, $avatar, $date){

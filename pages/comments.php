@@ -6,7 +6,7 @@
     $comments = getComments();
     $commentDel = $_GET['del'];
     $isLatest = $_GET['latest'];
-    $perPage = 10;
+    $perPage = 8;
     $listIndex = $_GET['list'];
     $pages = ceil(sizeof($comments) / $perPage);
     $listIndex ? $list = $listIndex : $list = 1;

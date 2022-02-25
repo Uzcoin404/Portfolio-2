@@ -227,7 +227,6 @@ nav {
   z-index: 999;
   display: flex;
   align-items: center;
-  margin-top: 20px;
 }
 nav.animate {
   top: -150%;
@@ -448,7 +447,7 @@ nav.active .menu_btn::after {
   width: 100%;
   height: 100%;
   position: relative;
-  padding: 120px 0 0;
+  padding: 100px 0 0;
 }
 .header_blog .container_glass {
   height: 84vh;
@@ -1414,7 +1413,7 @@ nav.active .menu_btn::after {
   background: linear-gradient(-45deg, #ff335c, #50fc9d, #40f2ff);
 }
 .profile_info {
-  padding-top: 115px;
+  padding-top: 100px;
   padding-bottom: 15px;
   overflow: hidden;
 }
@@ -1860,6 +1859,9 @@ nav.active .menu_btn::after {
   cursor: default;
 }
 /* Comments page styling */
+.comments_main{
+  min-height: 100vh;
+}
 .comments_main main {
   background: linear-gradient(45deg, #ff335c, #50fc9d, #40f2ff);
   padding-top: 100px;
