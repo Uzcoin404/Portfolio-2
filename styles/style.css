@@ -1859,12 +1859,10 @@ nav.active .menu_btn::after {
   cursor: default;
 }
 /* Comments page styling */
-.comments_main{
-  min-height: 100vh;
-}
 .comments_main main {
   background: linear-gradient(45deg, #ff335c, #50fc9d, #40f2ff);
   padding-top: 100px;
+  min-height: 100vh;
 }
 .comments_body {
   display: flex;
